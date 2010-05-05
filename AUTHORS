@@ -1,0 +1,7 @@
+Mate SOOS <soos.mate@gmail.com>
+With ideas and feedback from: Karsten Nohl
+
+Thanks to:
+- the author's professors
+- the gcc compiler team
+- GMP bignum library (though it is a real pain to use it as a C++ library... please implement operator>> ;) )

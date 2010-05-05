@@ -1,0 +1,37 @@
+Nice defaults:
+
+crypto1:
+max_karnaugh_table = 8;
+outputs = 56;
+shift: 31
+given random bits: 10
+
+
+hitag2:
+max_karnaugh_table = 8;
+outputs = 56;
+shift: 31
+given random bits: 18
+
+
+grain:
+max_karnaugh_table = 0;
+outputs = 160;
+init_clock = 0;
+shifts: sr0: 50, sr1: 15
+given random bits: 70
+
+
+trivium:
+max_karnaugh_table = 0;
+outputs = 200;
+init_clock = 0;
+shift: sr0: 80, sr1: 80, s2: 80
+given random bits: 155
+
+
+bivium:
+max_karnaugh_table = 0;
+outputs = 177;
+shift: sr0: 26, sr1: 26
+given random bits: 56

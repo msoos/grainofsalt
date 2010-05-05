@@ -1,0 +1,7 @@
+sr_size = 80,80
+linearizable_sr_during_init =
+linearizable_sr_during_norm = 1
+filters = 1
+init_clock = 160
+tweakable = sr1-0...63
+one_out = sr1-64...79

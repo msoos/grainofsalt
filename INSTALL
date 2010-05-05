@@ -1,0 +1,25 @@
+--------
+Under 64-bit Linux
+--------
+You do not need to compile the program. It is already statically
+compiled, you only need to execute it in a 64-bit Linux environment.
+
+--------
+Compile with cmake
+--------
+You need cmake. Install cmake, and then go into the 
+"build/" directory, and issue:
+
+cmake ../
+make
+
+You will then have the "grainofsalt" tool in the "build" directory.
+
+---------
+Compile with autotools
+---------
+Go to the 'build' directory. Issue
+
+../configure
+make
+

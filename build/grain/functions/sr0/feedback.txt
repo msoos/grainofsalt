@@ -1,0 +1,23 @@
+sr1-0
+sr0-62
+sr0-60
+sr0-52
+sr0-45
+sr0-37
+sr0-33
+sr0-28
+sr0-21
+sr0-14
+sr0-9
+sr0-0
+sr0-63 sr0-60
+sr0-37 sr0-33
+sr0-15 sr0-9
+sr0-60 sr0-52 sr0-45
+sr0-33 sr0-28 sr0-21
+sr0-63 sr0-45 sr0-28 sr0-9
+sr0-60 sr0-52 sr0-37 sr0-33
+sr0-63 sr0-60 sr0-21 sr0-15
+sr0-63 sr0-60 sr0-52 sr0-45 sr0-37
+sr0-33 sr0-28 sr0-21 sr0-15 sr0-9
+sr0-52 sr0-45 sr0-37 sr0-33 sr0-28 sr0-21

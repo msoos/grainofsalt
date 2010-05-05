@@ -1,0 +1,10 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(grainofsalt, 1.0)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile generator/Makefile  espresso/Makefile espresso/main/Makefile espresso/util/Makefile espresso/sparse/Makefile espresso/mincov/Makefile)
