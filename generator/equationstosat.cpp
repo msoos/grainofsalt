@@ -118,8 +118,7 @@ EquationsToSat::~EquationsToSat()
 uint EquationsToSat::insert_equality_clauses(const ExtendedMonomial& m, const string& desc)
 {
     string clause_group_name;
-    if (cpd.verbose)
-        clause_group_name = m.get_desc();
+    clause_group_name = m.get_desc();
 
     vector<pair<uint, bool> > vars;
     m.pushVarsInto(vars);
