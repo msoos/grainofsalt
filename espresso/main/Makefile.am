@@ -3,5 +3,10 @@ noinst_LTLIBRARIES = libmain.la
 AM_CXXFLAGS = -Wall $(all_includes) -I$(srcdir) 
 
 libmain_la_SOURCES = \
-cofactor.c  cubestr.c         cvrm.c     cvrout_original.c  essen.c   gasp.c     irred.c          map.c   primes.c  setc.c      sparse.c compl.c     cvrin.c           cvrmisc.c  equiv.c            exact.c   globals.c  main.c           opo.c   reduce.c  sharp.c     unate.c contain.c   cvrin_original.c  cvrout.c   espresso.c         expand.c  hack.c     main_original.c  pair.c  set.c     sminterf.c  verify.c
+cofactor.c  cubestr.c         cvrm.c     essen.c   gasp.c     irred.c          map.c   primes.c  setc.c      sparse.c compl.c     cvrin.c           cvrmisc.c  equiv.c            exact.c   globals.c  main.c           opo.c   reduce.c  sharp.c     unate.c contain.c   cvrout.c   espresso.c         expand.c  hack.c     pair.c  set.c     sminterf.c  verify.c
+
+
+noinst_LTLIBRARIES = libmainoriginal.la
+libmainoriginal_la_SOURCES= \
+cofactor.c  cubestr.c         cvrm.c     cvrout_original.c  essen.c   gasp.c     irred.c          map.c   primes.c  setc.c      sparse.c compl.c     cvrmisc.c  equiv.c            exact.c   globals.c  opo.c   reduce.c  sharp.c     unate.c contain.c   cvrin_original.c   espresso.c         expand.c  hack.c     main_original.c  pair.c  set.c     sminterf.c  verify.c
 

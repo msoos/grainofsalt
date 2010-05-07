@@ -1,10 +1,13 @@
-AC_INIT(configure.in)
-
-AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(grainofsalt, 1.0)
+AC_INIT(grainofsalt, 1)
 
 AC_LANG_CPLUSPLUS
 AC_PROG_CXX
-AM_PROG_LIBTOOL
+AC_LANG(C++)
 
-AC_OUTPUT(Makefile generator/Makefile  espresso/Makefile espresso/main/Makefile espresso/util/Makefile espresso/sparse/Makefile espresso/mincov/Makefile)
+AM_INIT_AUTOMAKE
+AC_CONFIG_MACRO_DIR([m4])
+LT_INIT
+AC_CONFIG_HEADERS(config.h)
+AC_CHECK_HEADERS(iostream)
+
+AC_OUTPUT(Makefile generator/Makefile espresso/Makefile espresso/main/Makefile espresso/util/Makefile espresso/sparse/Makefile espresso/mincov/Makefile)
