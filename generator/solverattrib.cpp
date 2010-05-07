@@ -93,11 +93,11 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     BOOST_FOREACH(const XorClause& c, xorClauses)
         c.add(satfile);
     
-    satfile << "c -----------  equal variables ----------------" << std::endl;
+    /*satfile << "c -----------  equal variables ----------------" << std::endl;
     typedef pair<uint, uint> mypair ;
     BOOST_FOREACH(const mypair& p, same_vars) {
         satfile << "c var " << p.first+1 << " eq " << p.second+1 << std::endl;
-    }
+    }*/
     
     add_sr_varnames(satfile);
     add_filter_varnames(satfile);
