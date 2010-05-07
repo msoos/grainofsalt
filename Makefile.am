@@ -3,3 +3,7 @@
 AUTOMAKE_OPTIONS = foreign 1.4
 
 SUBDIRS = espresso generator
+
+#all-local: generator
+#         cp generator/grainofsalt .
+
