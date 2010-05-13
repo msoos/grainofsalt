@@ -48,6 +48,8 @@ CipherDesc::CipherDesc() :
         , verbose(false)
         , mtrand(0x1234)
         , print_stats (false)
+        , permutateClauses(false)
+        , permutateVars(false)
         , cnfDir("satfiles")
         , fixed_state_init(false)
 {

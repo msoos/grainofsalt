@@ -85,6 +85,8 @@ public:
     uint xor_cut_len; ///<If not using xor-clauses what should be the cutting lenght? (default to 7)
     bool print_stats; ///<Should statistics be printed?
     string cnfDir; ///<The directory where the generated CNFs are put into
+    bool permutateClauses; ///<If set, clauses will be permutated in the outputted CNF
+    bool permutateVars;///<If set, variables will be permutated in the outputted CNF
 
     //----------------------------------------
     //Global variables

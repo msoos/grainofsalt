@@ -70,6 +70,8 @@ int main(int argc, char *argv[])
     ("verbose", "Print verbose messages. E.g. functions used, bits set, etc.")
     ("cnfDir", po::value<string>(), string("Put generated CNF files into this directory. By default, it is '" + cpd.cnfDir + "'").c_str())
     ("linearize", "If set, linearizeable shift registers will be linearized, i.e. its feedback function will be calculated from the same set of reference state bits. Default is not to do this.")
+    ("permutateVars", "If set, variables will be permutated in the generated CNF")
+    ("permutateClauses", "If set, clauses will be permutated in teh generated CNF(s)")
     ;
     
     po::variables_map vm;
@@ -178,6 +180,16 @@ int main(int argc, char *argv[])
         << "-> Otherwise, only the last problem's stats will be printed" << endl;
     } else {
         cout << "Statistics not printed." << endl;
+    }
+    
+    if (vm.count("permutateVars")) {
+        cpd.permutateVars = true;
+        cout << "Variables will be permutated in the outputted CNF" << endl;
+    }
+    
+    if (vm.count("permutateClauses")) {
+        cpd.permutateClauses = true;
+        cout << "Clauses will be permutated in the outputted CNF" << endl;
     }
     
     uint bits_of_help = 0;

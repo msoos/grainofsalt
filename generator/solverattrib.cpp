@@ -1,4 +1,3 @@
-
 #include "solverattrib.h"
 #include "cipherdesc.h"
 #include "time_mem.h"
@@ -22,13 +21,16 @@ SolverAttrib::SolverAttrib() :
 {
 }
 
-void SolverAttrib::permutateVars()
+void SolverAttrib::setupPermutateVars()
 {
     variableMix.resize(cpd.vars.get_last_var());
     
     for (uint i = 0; i < variableMix.size(); i++)
         variableMix[i] = i;
-    
+}
+
+void SolverAttrib::permutateVars()
+{
     for (int i = 0; i < variableMix.size(); i++) {
         int j = cpd.mtrand.randInt(i);
         uint tmp = variableMix[i];
@@ -84,8 +86,9 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     if (!satfile)
         throw("Cannot open " + output_satfile_filename.native_file_string() + " for writing. Cannot write output file");
     
-    permutateVars();
-    permutateClauses();
+    setupPermutateVars();
+    if (cpd.permutateVars)  permutateVars();
+    if (cpd.permutateClauses) permutateClauses();
     
     BOOST_FOREACH(const Clause& c, clauses)
         c.add(satfile);

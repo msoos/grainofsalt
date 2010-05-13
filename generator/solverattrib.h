@@ -73,6 +73,7 @@ private:
     void add_mono_varnames(ofstream& satfile);///<Add the names of the monomials to the solver
     void add_filter_varnames(ofstream& satfile); ///<Add the names of the filter functions's variables to the solver
     
+    void setupPermutateVars(); ///<Sets up permutateVars. Must be called, even if permutation is not performed
     void permutateVars(); ///<Permutate variables
     void permutateClauses(); ///<Permutate the clauses and the xorClauses
     
