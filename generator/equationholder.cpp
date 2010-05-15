@@ -337,7 +337,16 @@ void EquationHolder::remove_unneeded()
 void EquationHolder::print_equations_set(const DataElement& type, const string& name) const
 {
     ofstream polyfile, distribfile;
-
+    
+    if (!bs::exists(get_stats_dir())) {
+        std::cout << "Directory '" << get_stats_dir() << "' does not exist. Trying to create it." << std::endl;
+        if (!bs::create_directory(get_stats_dir())) {
+            std::cout << "Could not create directory " << get_stats_dir() << ". Exiting." << std::endl;
+            exit(-1);
+        }
+    }
+    std::cout << "Generating statistics into directory " << get_stats_dir().native_directory_string() << endl;
+    
     bs::path filename = get_stats_dir() / name;
     polyfile.open(filename.native_file_string().c_str());
     if (polyfile.fail())
