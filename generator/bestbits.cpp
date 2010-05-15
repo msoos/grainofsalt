@@ -234,7 +234,7 @@ vector<DataElement> BestBits::read_file(const bs::path& filename, const uint max
     string lineread;
     while (getline(file, lineread)) { // read line by line
         uint sr, var;
-        if (!parse(lineread.c_str(),(chseq<>("sr") >> uint_p[assign_a(sr)] >> "-" >> uint_p[assign_a(var)]), space_p).full)
+        if (!parse(lineread.c_str(),(chseq<>("sr") >> uint_p[assign_a(sr)] >> "[" >> uint_p[assign_a(var)] >> "]"), space_p).full)
             throw("Cannot parse best bits file line:\n" + lineread);
 
         ret.push_back(DataElement(sr_type, sr, var));

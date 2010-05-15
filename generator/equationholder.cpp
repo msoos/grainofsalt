@@ -76,7 +76,7 @@ bool EquationHolder::eliminate_trivial_equations(bool& changed_something)
     for (list<Equation>::iterator it = equations.begin(); it != equations.end();) {
         if (!it->equation_is_trivial_and_has_been_replaced && it->trivial_equation()) {
             it->equation_is_trivial_and_has_been_replaced = true;
-            it = eliminate(it, DataElementRange(any_type, UINT_MAX, UINT_MAX, UINT_MAX), num_replaced, false);
+            it = eliminate(it, DataElementRange(any_type, std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max()), num_replaced, false);
             changed_something = true;
         } else
             it ++;
@@ -117,7 +117,7 @@ void EquationHolder::eliminate_mono_equations(bool& changed_something)
                 
                 same_vars[left_var] = right_var;
             }
-            it = eliminate(it, DataElementRange(any_type, UINT_MAX, UINT_MAX, UINT_MAX), num_replaced);
+            it = eliminate(it, DataElementRange(any_type, std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max()), num_replaced);
             changed_something = true;
         } else
             it ++;
@@ -158,17 +158,17 @@ void EquationHolder::simplify_equations()
 
     /*for (uint filter = 0; filter < cpd.filter_num; filter++) {
         DataElementRange range(filter_type, filter, 0, cpd.init_clock + cpd.outputs);
-        eliminateBetween(range, DataElementRange(any_type, UINT_MAX, 0, UINT_MAX), true);
+        eliminateBetween(range, DataElementRange(any_type, std::numeric_limits<unsigned int>::max(), 0, std::numeric_limits<unsigned int>::max()), true);
     }*/
     
     
-    //eliminateBetween(filter_type, 1, any_type, UINT_MAX, 0, cpd.init_clock + cpd.outputs);
-    //eliminateBetween(filter_type, 2, any_type, UINT_MAX, 0, cpd.init_clock + cpd.outputs);
+    //eliminateBetween(filter_type, 1, any_type, std::numeric_limits<unsigned int>::max(), 0, cpd.init_clock + cpd.outputs);
+    //eliminateBetween(filter_type, 2, any_type, std::numeric_limits<unsigned int>::max(), 0, cpd.init_clock + cpd.outputs);
 
-    //eliminateBetween(init_sr_type, 0, , any_type, UINT_MAX, 0, cpd.init_clock);
-    //eliminateBetween(init_sr_type, 1, any_type, UINT_MAX, 0, cpd.init_clock);
-    //eliminateBetween(norm_sr_type, 0, any_type, UINT_MAX, cpd.init_clock, cpd.init_clock +cpd.sr_size[0] + cpd.outputs);
-    //eliminateBetween(norm_sr_type, 1, any_type, UINT_MAX, cpd.init_clock, cpd.init_clock +cpd.sr_size[1] + cpd.outputs);
+    //eliminateBetween(init_sr_type, 0, , any_type, std::numeric_limits<unsigned int>::max(), 0, cpd.init_clock);
+    //eliminateBetween(init_sr_type, 1, any_type, std::numeric_limits<unsigned int>::max(), 0, cpd.init_clock);
+    //eliminateBetween(norm_sr_type, 0, any_type, std::numeric_limits<unsigned int>::max(), cpd.init_clock, cpd.init_clock +cpd.sr_size[0] + cpd.outputs);
+    //eliminateBetween(norm_sr_type, 1, any_type, std::numeric_limits<unsigned int>::max(), cpd.init_clock, cpd.init_clock +cpd.sr_size[1] + cpd.outputs);
 
     if (cpd.verbose) cout << "Done (time:" << cpuTime() - cpu_time  << "s)" << endl;
 }
@@ -348,7 +348,7 @@ void EquationHolder::print_equations_set(const DataElement& type, const string& 
 
     BOOST_FOREACH(const Equation& eq, equations) {
         if (type.type != any_type && eq.type.type != type.type) continue;
-        if (type.which_of_type != UINT_MAX && eq.type.which_of_type != (uint)type.which_of_type) continue;
+        if (type.which_of_type != std::numeric_limits<unsigned int>::max() && eq.type.which_of_type != (uint)type.which_of_type) continue;
 
         polyfile << eq << endl << endl;
 
@@ -368,22 +368,22 @@ void EquationHolder::print_equations() const
     }
     
     for (uint i = 0; i < cpd.sr_num; i++) {
-        print_equations_set(DataElement(sr_type, i, UINT_MAX)
+        print_equations_set(DataElement(sr_type, i, std::numeric_limits<unsigned int>::max())
                             , "init_sr" + lexical_cast<string>(i));
     }
     for (uint i = 0; i < cpd.sr_num; i++) {
-        print_equations_set(DataElement(sr_type, i, UINT_MAX)
+        print_equations_set(DataElement(sr_type, i, std::numeric_limits<unsigned int>::max())
                             , "sr" + lexical_cast<string>(i));
     }
 
-    print_equations_set(DataElement(output_type, UINT_MAX, UINT_MAX), "out");
+    print_equations_set(DataElement(output_type, std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max()), "out");
 
     for (uint i = 0; i < cpd.filter_num; i++) {
-        print_equations_set(DataElement(filter_type, i, UINT_MAX)
+        print_equations_set(DataElement(filter_type, i, std::numeric_limits<unsigned int>::max())
                             , "f" + lexical_cast<string>(i));
     }
 
-    print_equations_set(DataElement(any_type, UINT_MAX, UINT_MAX), "all");
+    print_equations_set(DataElement(any_type, std::numeric_limits<unsigned int>::max(), std::numeric_limits<unsigned int>::max()), "all");
 
     ofstream monomial_size_distrib_file;
     bs::path filename = get_stats_dir() / "monos-dist";

@@ -1,6 +1,5 @@
-noinst_LTLIBRARIES = libcryptominisat.la
-
-AM_CXXFLAGS = -Wall $(all_includes) -I$(srcdir) -I$(srcdir)/../MTRand -I$(srcdir)/../mtl
+AM_CXXFLAGS = -Wall $(all_includes) -I$(srcdir) -I$(srcdir)/MTRand \
+	      -I$(srcdir)/../mtl
 
 bin_PROGRAMS = grainofsalt
 grainofsalt_SOURCES =  bestbits.cpp  dataelement.cpp  debug.cpp  \
@@ -10,4 +9,4 @@ grainofsalt_SOURCES =  bestbits.cpp  dataelement.cpp  debug.cpp  \
 	data_holder.cpp  equationholder.cpp  grain-of-salt.cpp  mystack.cpp \
 	solverattrib.cpp
 
-grainofsalt_LDADD = espresso.la
+grainofsalt_LDADD = ../espresso/libespresso.la -lgmp -lboost_program_options -lboost_filesystem

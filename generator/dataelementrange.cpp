@@ -23,13 +23,13 @@ DataElementRange::DataElementRange(const element_type _type, const uint _which_o
 {
     switch (type) {
     case output_type:
-        assert(which_of_type == UINT_MAX || which_of_type == 0);
+        assert(which_of_type == std::numeric_limits<unsigned int>::max() || which_of_type == 0);
         break;
     case sr_type:
-        assert(which_of_type == UINT_MAX || which_of_type < cpd.sr_num);
+        assert(which_of_type == std::numeric_limits<unsigned int>::max() || which_of_type < cpd.sr_num);
         break;
     case filter_type:
-        assert(which_of_type  == UINT_MAX || which_of_type < cpd.filter_num);
+        assert(which_of_type  == std::numeric_limits<unsigned int>::max() || which_of_type < cpd.filter_num);
         break;
     case help_type:
     case any_type:
@@ -45,9 +45,9 @@ DataElementRange::DataElementRange(const element_type _type, const uint _which_o
 const bool DataElementRange::contains(const DataElement& d) const
 {
     if (type != any_type && d.type != type) return false;
-    if (which_of_type != UINT_MAX && d.which_of_type != which_of_type) return false;
-    if (var_from != UINT_MAX && d.index < var_from) return false;
-    if (var_to != UINT_MAX && d.index > var_to) return false;
+    if (which_of_type != std::numeric_limits<unsigned int>::max() && d.which_of_type != which_of_type) return false;
+    if (var_from != std::numeric_limits<unsigned int>::max() && d.index < var_from) return false;
+    if (var_to != std::numeric_limits<unsigned int>::max() && d.index > var_to) return false;
 
     return true;
 }

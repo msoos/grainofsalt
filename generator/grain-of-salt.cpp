@@ -223,18 +223,18 @@ bool GrainOfSalt::one_test(SolverAttrib& solverAttrib, EquationHolder& eqHolder,
     OutputMaker output_maker(dataHolder);
     for (uint time = 0; time < cpd.init_clock; time++) {
         for (uint i = 0; i < cpd.sr_num; i++)
-            output_maker.generate(eqHolder, time, DataElement(sr_type, i, UINT_MAX));
+            output_maker.generate(eqHolder, time, DataElement(sr_type, i, std::numeric_limits<unsigned int>::max()));
         for (uint i = 0; i < cpd.filter_num; i++)
-            output_maker.generate(eqHolder, time, DataElement(filter_type, i, UINT_MAX));
+            output_maker.generate(eqHolder, time, DataElement(filter_type, i, std::numeric_limits<unsigned int>::max()));
     }
 
     for (uint time = cpd.init_clock; time < cpd.init_clock + cpd.outputs; time++) {
         for (uint i = 0; i < cpd.sr_num; i++)
-            output_maker.generate(eqHolder, time, DataElement(sr_type, i, UINT_MAX));
+            output_maker.generate(eqHolder, time, DataElement(sr_type, i, std::numeric_limits<unsigned int>::max()));
         for (uint i = 0; i < cpd.filter_num; i++)
-            output_maker.generate(eqHolder, time, DataElement(filter_type, i, UINT_MAX));
+            output_maker.generate(eqHolder, time, DataElement(filter_type, i, std::numeric_limits<unsigned int>::max()));
         for (uint i = 0; i < cpd.no_ciphers; i++)
-            output_maker.generate(eqHolder, time, DataElement(output_type, i, UINT_MAX));
+            output_maker.generate(eqHolder, time, DataElement(output_type, i, std::numeric_limits<unsigned int>::max()));
     }
 
     if (cpd.verbose)
@@ -266,7 +266,7 @@ void GrainOfSalt::add_given_data(const map<DataElement, bool>& given_data, Equat
     typedef pair<DataElement, bool> mypair;
     BOOST_FOREACH(const mypair& g, given_data) {
         eqHolder.add_eq(
-            DataElement(help_type, g.first.which_of_type, UINT_MAX)
+            DataElement(help_type, g.first.which_of_type, std::numeric_limits<unsigned int>::max())
             , Monomial(cpd.vars.get_array_var(g.first), false)
             , new Polynomial(g.second)
         );

@@ -171,7 +171,7 @@ void SolverAttrib::addXorClause(vector<Lit>& lits, const uint clause_group, cons
     if (use_xor_clauses) 
         xorClauses.push_back(XorClause(lits, clause_group, desc));
     else {
-        uint last_var = UINT_MAX;
+        uint last_var = std::numeric_limits<unsigned int>::max();
         for (uint i = 0; i < lits.size();) {
             vector<Lit> newlits;
             

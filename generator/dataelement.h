@@ -37,7 +37,7 @@ using std::string;
 @brief Holds exactly one data piece: a filter, an output, an SR, etc.
 
 Used throughout so that these variables can be intelligently stored and accessed. This way, these can be sorted, for instance.
-UINT_MAX for which_of_type means that it matches any. any_type means that it matches any type. These special things are used for filtering.
+std::numeric_limits<unsigned int>::max() for which_of_type means that it matches any. any_type means that it matches any type. These special things are used for filtering.
 */
 class DataElement
 {
@@ -54,8 +54,8 @@ public:
     friend ostream& operator << (ostream& os, const DataElement& s);
 
     element_type type; ///<The type of the element. Can be generic: any_type
-    uint which_of_type; ///<Which of the type (e.g. sr1, sr2, etc.). Can be generic: UINT_MAX
-    uint index; ///<Which index? Can be generic: UINT_MAX
+    uint which_of_type; ///<Which of the type (e.g. sr1, sr2, etc.). Can be generic: std::numeric_limits<unsigned int>::max()
+    uint index; ///<Which index? Can be generic: std::numeric_limits<unsigned int>::max()
 private:
     typedef list<list<DataElement> >::iterator DataElementIter;
     typedef list<list<DataElement> >::const_iterator DataElementIterConst;

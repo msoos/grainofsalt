@@ -35,13 +35,13 @@ DataElement::DataElement(const element_type _type, const uint _which_of_type, co
 {
     switch (type) {
     case output_type:
-        assert(which_of_type == UINT_MAX || which_of_type < cpd.no_ciphers);
+        assert(which_of_type == std::numeric_limits<unsigned int>::max() || which_of_type < cpd.no_ciphers);
         break;
     case sr_type:
-        assert(which_of_type == UINT_MAX || which_of_type < cpd.sr_num);
+        assert(which_of_type == std::numeric_limits<unsigned int>::max() || which_of_type < cpd.sr_num);
         break;
     case filter_type:
-        assert(which_of_type  == UINT_MAX || which_of_type < cpd.filter_num);
+        assert(which_of_type  == std::numeric_limits<unsigned int>::max() || which_of_type < cpd.filter_num);
         break;
     case help_type:
     case any_type:
@@ -54,8 +54,8 @@ DataElement::DataElement(const element_type _type, const uint _which_of_type, co
 bool DataElement::matches(const DataElement& e) const
 {
     if (e.type != any_type && e.type != type) return false;
-    if (e.which_of_type != UINT_MAX && e.which_of_type != which_of_type) return false;
-    if (e.index != UINT_MAX && e.index != index) return false;
+    if (e.which_of_type != std::numeric_limits<unsigned int>::max() && e.which_of_type != which_of_type) return false;
+    if (e.index != std::numeric_limits<unsigned int>::max() && e.index != index) return false;
 
     return true;
 }
@@ -105,8 +105,8 @@ ostream& operator << (ostream& os, const DataElement& s)
         assert(false);
     }
 
-    if (s.which_of_type != UINT_MAX) os << s.which_of_type;
-    if (s.index != UINT_MAX) os << "[" << s.index << "]";
+    if (s.which_of_type != std::numeric_limits<unsigned int>::max()) os << s.which_of_type;
+    if (s.index != std::numeric_limits<unsigned int>::max()) os << "[" << s.index << "]";
 
     return os;
 }
