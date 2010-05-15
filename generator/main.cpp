@@ -74,8 +74,11 @@ int main(int argc, char *argv[])
     ("permutateClauses", "If set, clauses will be permutated in teh generated CNF(s)")
     ;
     
-    po::variables_map vm;
+    for (int i = 0; i < argc; i++) {
+        cpd.commandlineParams += string(argv[i]);
+    }
     
+    po::variables_map vm;
     try {
         po::store(po::parse_command_line(argc, argv, desc), vm);
         po::notify(vm);

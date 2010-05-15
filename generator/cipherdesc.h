@@ -87,6 +87,7 @@ public:
     string cnfDir; ///<The directory where the generated CNFs are put into
     bool permutateClauses; ///<If set, clauses will be permutated in the outputted CNF
     bool permutateVars;///<If set, variables will be permutated in the outputted CNF
+    string commandlineParams; ///<Command line parameters given
 
     //----------------------------------------
     //Global variables
