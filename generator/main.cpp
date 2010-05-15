@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
     
     for (int i = 0; i < argc; i++) {
         cpd.commandlineParams += string(argv[i]);
+        if (i+1 != argc) cpd.commandlineParams += " ";
     }
     
     po::variables_map vm;

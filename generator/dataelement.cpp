@@ -105,7 +105,8 @@ ostream& operator << (ostream& os, const DataElement& s)
         assert(false);
     }
 
-    if (s.which_of_type != std::numeric_limits<unsigned int>::max()) os << s.which_of_type;
+    if (s.which_of_type != std::numeric_limits<unsigned int>::max())
+        os << s.which_of_type;
     if (s.index != std::numeric_limits<unsigned int>::max()) os << "[" << s.index << "]";
 
     return os;
