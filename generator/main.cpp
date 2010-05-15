@@ -42,8 +42,7 @@ namespace po = boost::program_options;
 
 /**
 \author Mate Soos
-\mainpage Grain-of-salt a distributed, automated stream-cipher solver
-We rock, and you know it.
+\mainpage Grain-of-salt an automated stream-cipher problem generator
 */
 
 int main(int argc, char *argv[])
