@@ -26,6 +26,7 @@ filter function number 0 is under 'grain/functions/f0.txt'
 
 Example usage:
 
+go to the "buid" directory, and issue:
 ./grainofsalt --num 100 --outputs 90 --crypto grain --probBits 70
 
 Generates 100 problems into 'build/satfiles'. These problems are based on the
