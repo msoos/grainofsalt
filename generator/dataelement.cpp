@@ -90,7 +90,7 @@ ostream& operator << (ostream& os, const DataElement& s)
 {
     switch (s.type) {
     case help_type:
-        os << "help";
+        os << "help bit";
         break;
     case filter_type:
         os << "f";
