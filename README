@@ -32,3 +32,5 @@ go to the "buid" directory, and issue:
 Generates 100 problems into 'build/satfiles'. These problems are based on the
 Grain cipher, with 90 bits of observed output, random key, random plaintext,
 and 70 randomly given key bits, all bits set randomly to 0 or 1.
+
+For more a complete HOWTO, please go to my website: just google "Mate Soos"
