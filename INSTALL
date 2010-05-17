@@ -1,7 +1,7 @@
 ======================
 Compile with cmake
 ======================
-Go into the "build/" directory, and issue:
+Go into the "build" directory, and issue:
 
 cmake ../
 make
