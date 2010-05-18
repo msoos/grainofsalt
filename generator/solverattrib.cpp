@@ -108,6 +108,7 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     
     add_sr_varnames(satfile);
     add_filter_varnames(satfile);
+    add_output_varnames(satfile);
     add_mono_varnames(satfile);
     satfile.close();
 }
@@ -122,15 +123,15 @@ void SolverAttrib::add_sr_varnames(ofstream& satfile)
     satfile << "c --------------- Variables in shift registers (sr-s) ------------" << std::endl;
     for (uint i = 0; i < cpd.sr_num; i++) {
         for (uint i2 = 0; i2 < cpd.sr_size[i] + cpd.init_clock + cpd.outputs; i2++) {
-            string basename = "sr[" + lexical_cast<string>(i) + "]";
-            string extraname = "[" + lexical_cast<string>(i2) + "]";
-            if (i2 >= cpd.sr_shift[i] && i2 < (cpd.sr_shift[i] + cpd.sr_size[i]) )
-                extraname += "(real unknown)";
-            
             uint var = cpd.vars.get_array_var(sr_type, i, i2);
+            string name = cpd.vars.get_varname_from_varnum(var);
+            string extraname;
+            if (i2 >= cpd.sr_shift[i] && i2 < (cpd.sr_shift[i] + cpd.sr_size[i]) )
+                extraname += " (real unknown)";
+            
             var = variableMix[var];
             
-            satfile << "c var " <<  var + 1 << " " << (basename+extraname) << std::endl;
+            satfile << "c var " <<  var + 1 << " " << (name+extraname) << std::endl;
         }
     }
     satfile << "c --------------- End variables in shift registers (sr-s) ------------" << std::endl;
@@ -141,16 +142,29 @@ void SolverAttrib::add_filter_varnames(ofstream& satfile)
     satfile << "c --------------- Variables of filters (f-s) ------------" << std::endl;
     for (uint i = 0; i < cpd.filter_num; i++) {
         for (uint i2 = 0; i2 < cpd.init_clock + cpd.outputs; i2++) {
-            string basename = "f[" + lexical_cast<string>(i) + "]";
-            string extraname = "[" + lexical_cast<string>(i2) + "]";
-            
+            /*string basename = "f[" + lexical_cast<string>(i) + "]";
+            string extraname = "[" + lexical_cast<string>(i2) + "]";*/
             uint var = cpd.vars.get_array_var(filter_type, i, i2);
+            string name = cpd.vars.get_varname_from_varnum(var);
             var = variableMix[var];
             
-            satfile << "c var " << var + 1 << " " << (basename+extraname) << std::endl;
+            satfile << "c var " << var + 1 << " " << name << std::endl;
         }
     }
     satfile << "c --------------- End variables in filters (f-s) ------------" << std::endl;
+}
+
+void SolverAttrib::add_output_varnames(ofstream& satfile)
+{
+    satfile << "c ---------------Variables of outputs: normally propagated, so not in equations  ------------" << std::endl;
+    vector<uint> vars = cpd.vars.get_array(output_type, 0);
+    for (uint i2 = 0; i2 < vars.size(); i2++) {
+        uint var = vars[i2];
+        string name = cpd.vars.get_varname_from_varnum(var);
+        var = variableMix[var];
+        satfile << "c var " << var + 1 << " " << name << std::endl;
+    }
+    satfile << "c --------------- End variables of outputs ------------" << std::endl;
 }
 
 void SolverAttrib::add_mono_varnames(ofstream& satfile)
