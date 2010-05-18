@@ -50,6 +50,7 @@ CipherDesc::CipherDesc() :
         , print_stats (false)
         , permutateClauses(false)
         , permutateVars(false)
+        , propagateFacts(true)
         , cnfDir("satfiles")
         , fixed_state_init(false)
 {

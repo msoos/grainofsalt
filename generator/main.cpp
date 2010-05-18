@@ -71,6 +71,7 @@ int main(int argc, char *argv[])
     ("linearize", "If set, linearizeable shift registers will be linearized, i.e. its feedback function will be calculated from the same set of reference state bits. Default is not to do this.")
     ("permutateVars", "If set, variables will be permutated in the generated CNF")
     ("permutateClauses", "If set, clauses will be permutated in teh generated CNF(s)")
+    ("nopropagate", "If set, facts will not be propagated at the ANF level. Expect slower solving.")
     ;
     
     for (int i = 0; i < argc; i++) {
@@ -280,6 +281,11 @@ int main(int argc, char *argv[])
         howmany =  vm["num"].as<int>();
     }
     cout << "Generating " << howmany << " problem instances" << endl;
+
+    if (vm.count("nopropagate")) {
+        cpd.propagateFacts = false;
+        std::cout << "Facts will NOT be propagated at the ANF level. This should lead to slower solving." << std::endl;
+    }
     
     
     //cpd.set_fixed_state_init(556); // select distinct clause from learnts, run_set where run_set.ID = learnts.run_set_id and output = "e282674b82af4e" order by length(clause) limit 20;

@@ -242,7 +242,7 @@ bool GrainOfSalt::one_test(SolverAttrib& solverAttrib, EquationHolder& eqHolder,
 
     double cpu_time = cpuTime();
     lbool ret = l_Undef;
-    ret &= eqHolder.eliminate_trivial_and_mono_equations();
+    if (cpd.propagateFacts) ret &= eqHolder.eliminate_trivial_and_mono_equations();
     if (ret != l_Undef && cpd.verbose) {
         cout << "Solved by EquationHolder's eliminate_trivial_equations" << endl;
         return false;

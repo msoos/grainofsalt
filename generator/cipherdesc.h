@@ -73,8 +73,6 @@ public:
     vector<uint> linearizable_sr_during_init; ///<Which shift registers are linearizeable during initialisation? - do NOT change
     vector<uint> linearizable_sr_during_norm; ///<Which shift registers are linearizeable during normal running of the cipher? - do NOT change
     bool mixed_shifts; ///<Have the shifting been "mixed"? - do NOT change
-    bool noExtendedMonomial; ///<Extended monomials used?
-    bool linearizeLinearizeable; ///<Should we linearize linearizeable shift registers?
 
     //----------------------------------------
     //User-controllable variables
@@ -88,6 +86,9 @@ public:
     bool permutateClauses; ///<If set, clauses will be permutated in the outputted CNF
     bool permutateVars;///<If set, variables will be permutated in the outputted CNF
     string commandlineParams; ///<Command line parameters given
+    bool noExtendedMonomial; ///<Extended monomials used?
+    bool linearizeLinearizeable; ///<Should we linearize linearizeable shift registers?
+    bool propagateFacts; ///<If set, facts will be propagated at the ANF level
 
     //----------------------------------------
     //Global variables
