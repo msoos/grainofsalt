@@ -130,7 +130,7 @@ void SolverAttrib::add_sr_varnames(ofstream& satfile)
             uint var = cpd.vars.get_array_var(sr_type, i, i2);
             var = variableMix[var];
             
-            satfile << "c v " <<  var + 1 << " " << (basename+extraname) << std::endl;
+            satfile << "c var " <<  var + 1 << " " << (basename+extraname) << std::endl;
         }
     }
     satfile << "c --------------- End variables in shift registers (sr-s) ------------" << std::endl;
@@ -147,7 +147,7 @@ void SolverAttrib::add_filter_varnames(ofstream& satfile)
             uint var = cpd.vars.get_array_var(filter_type, i, i2);
             var = variableMix[var];
             
-            satfile << "c v " << var + 1 << " " << (basename+extraname) << std::endl;
+            satfile << "c var " << var + 1 << " " << (basename+extraname) << std::endl;
         }
     }
     satfile << "c --------------- End variables in filters (f-s) ------------" << std::endl;
@@ -165,7 +165,7 @@ void SolverAttrib::add_mono_varnames(ofstream& satfile)
         uint var = extmono_pair.second;
         var = variableMix[var];
         
-        satfile << "c v " << var + 1 << " " << name << std::endl;
+        satfile << "c var " << var + 1 << " " << name << std::endl;
     }
     satfile << "c --------------- End variables assigned to monomials (monos-s) ------------" << std::endl;
 }
