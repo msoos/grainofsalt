@@ -72,7 +72,7 @@ private:
     void add_sr_varnames(ofstream& satfile); ///<Add the names of the shift register's variables to the solver
     void add_mono_varnames(ofstream& satfile);///<Add the names of the monomials to the solver
     void add_filter_varnames(ofstream& satfile); ///<Add the names of the filter functions's variables to the solver
-    void add_output_varnames(ofstream& satfile);
+    void add_output_varnames(ofstream& satfile); ///<Add the variable names of the outputs given
     
     void setupPermutateVars(); ///<Sets up permutateVars. Must be called, even if permutation is not performed
     void permutateVars(); ///<Permutate variables
