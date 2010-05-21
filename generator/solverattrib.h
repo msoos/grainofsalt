@@ -73,6 +73,7 @@ private:
     void add_mono_varnames(ofstream& satfile);///<Add the names of the monomials to the solver
     void add_filter_varnames(ofstream& satfile); ///<Add the names of the filter functions's variables to the solver
     void add_output_varnames(ofstream& satfile); ///<Add the variable names of the outputs given
+    void add_cut_xor_varnames(ofstream& satfile); ///<Add the variable names corresponding to the internal variables needed to cut XOR-s
     
     void setupPermutateVars(); ///<Sets up permutateVars. Must be called, even if permutation is not performed
     void permutateVars(); ///<Permutate variables

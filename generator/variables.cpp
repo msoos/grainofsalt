@@ -90,6 +90,13 @@ string Variables::get_varname_from_varnum(const uint var) const
         return ss.str();
     }
 
+    typedef pair<vector<Lit>, Var> mypair3;
+    BOOST_FOREACH(const mypair3& p, cutxors) if (p.second == var) {
+        stringstream ss;
+        ss << "cut-xor-var";
+        return ss.str();
+    }
+
     assert(false && "Var out of range");
 }
 
@@ -147,6 +154,11 @@ uint Variables::get_last_noninternal_var() const
 const map<ExtendedMonomial, Var>& Variables::get_extmonos() const
 {
     return extmonos;
+}
+
+const map<vector<Lit>, Var>& Variables::get_cutxors() const
+{
+    return cutxors;
 }
 
 uint Variables::get_last_var()

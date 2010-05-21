@@ -110,6 +110,7 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     add_filter_varnames(satfile);
     add_output_varnames(satfile);
     add_mono_varnames(satfile);
+    add_cut_xor_varnames(satfile);
     satfile.close();
 }
 
@@ -182,6 +183,27 @@ void SolverAttrib::add_mono_varnames(ofstream& satfile)
         satfile << "c var " << var + 1 << " " << name << std::endl;
     }
     satfile << "c --------------- End variables assigned to monomials (monos-s) ------------" << std::endl;
+}
+
+void SolverAttrib::add_cut_xor_varnames(ofstream& satfile)
+{
+    typedef const pair<vector<Lit>, Var> mypair;
+    
+    satfile << "c --------------- Variables assigned to cut xors ------------" << std::endl;
+    BOOST_FOREACH(const mypair cutx, cpd.vars.get_cutxors()) {
+        string name;
+        for (uint32_t i = 0; i < cutx.first.size(); i++) {
+            name +=  cpd.vars.get_varname_from_varnum(cutx.first[i].var());
+            if (i+1 != cutx.first.size())
+                name += "+";
+        }
+        
+        uint var = cutx.second;
+        var = variableMix[var];
+        
+        satfile << "c var " << var + 1 << " " << name << std::endl;
+    }
+    satfile << "c --------------- End variables assigned to cut xors ------------" << std::endl;
 }
 
 void SolverAttrib::addXorClause(vector<Lit>& lits, const uint clause_group, const string desc)
