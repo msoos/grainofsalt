@@ -29,5 +29,4 @@ target_link_libraries(grainofsalt
 	${Boost_LIBRARIES}
 	${ZLIB_LIBRARY}
 	${GMP_LIBRARIES}
-        pthread
 )

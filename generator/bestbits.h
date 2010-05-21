@@ -15,7 +15,7 @@
 #include <vector>
 #include <string>
 #include <boost/filesystem/path.hpp>
-#include <boost/thread/mutex.hpp>
+//#include <boost/thread/mutex.hpp>
 
 #include "dataelement.h"
 

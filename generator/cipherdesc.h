@@ -127,7 +127,7 @@ private:
     //----------------------------------------
     stack<MonoStack*> monoStackStack;
     stack<Monomial*> mixedMonosStack;
-    boost::mutex monoStackStack_mutex, mixedMonosStack_mutex;
+    //boost::mutex monoStackStack_mutex, mixedMonosStack_mutex;
 
     //----------------------------------------
     //Fixed "random" state. This way, the output and state can be fixed -- needed for learning clauses about the same problem

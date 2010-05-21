@@ -25,7 +25,7 @@
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include <boost/filesystem/operations.hpp>
-#include <boost/thread/mutex.hpp>
+//#include <boost/thread/mutex.hpp>
 #include <boost/foreach.hpp>
 
 #include "mystack.h"
@@ -58,7 +58,7 @@ CipherDesc::CipherDesc() :
 
 Monomial* CipherDesc::get_free_mixedMonos()
 {
-    boost::mutex::scoped_lock scoped_lock(mixedMonosStack_mutex);
+    //boost::mutex::scoped_lock scoped_lock(mixedMonosStack_mutex);
     if (mixedMonosStack.empty()) {
         return new Monomial[Polynomial::maxMonos];
     }
@@ -71,13 +71,13 @@ Monomial* CipherDesc::get_free_mixedMonos()
 
 void CipherDesc::return_mixedMonos(Monomial* mixedMonos)
 {
-    boost::mutex::scoped_lock scoped_lock(mixedMonosStack_mutex);
+    //boost::mutex::scoped_lock scoped_lock(mixedMonosStack_mutex);
     mixedMonosStack.push(mixedMonos);
 }
 
 MonoStack* CipherDesc::get_free_monoStack()
 {
-    boost::mutex::scoped_lock scoped_lock(monoStackStack_mutex);
+    //boost::mutex::scoped_lock scoped_lock(monoStackStack_mutex);
     if (monoStackStack.empty()) {
         return new MonoStack;
     }
@@ -90,7 +90,7 @@ MonoStack* CipherDesc::get_free_monoStack()
 
 void CipherDesc::return_monoStack(MonoStack* monoStack)
 {
-    boost::mutex::scoped_lock scoped_lock(monoStackStack_mutex);
+    //boost::mutex::scoped_lock scoped_lock(monoStackStack_mutex);
     monoStackStack.push(monoStack);
 }
 

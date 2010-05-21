@@ -5,15 +5,15 @@ cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 #MARK_AS_ADVANCED(CMAKE_BUILD_TYPE )
 
 PROJECT(grainofsalt)
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -Wall -g -mtune=native")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -Wall -ggdb -mtune=native")
 SET(CMAKE_CXX_FLAGS_DEBUG "-Wall -O0 -ggdb")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -g0 -DNDEBUG -mtune=native -fomit-frame-pointer")
 SET(CMAKE_EXE_LINKER_FLAGS "-static")
 
-FIND_PACKAGE(Threads REQUIRED)
-set(thread_library "${CMAKE_THREAD_LIBS_INIT}")
+#FIND_PACKAGE(Threads REQUIRED)
+#set(thread_library "${CMAKE_THREAD_LIBS_INIT}")
 
-find_package( Boost 1.34 COMPONENTS system thread filesystem program_options REQUIRED)
+find_package( Boost 1.34 COMPONENTS system filesystem program_options REQUIRED)
 link_directories ( ${Boost_LIBRARY_DIRS} )
 include_directories ( ${Boost_INCLUDE_DIRS} )
 
