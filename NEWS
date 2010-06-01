@@ -1,3 +1,11 @@
+31/05/2010 -- Version 1.1
+Fixed a couple of variable-naming bugs, and added a few
+options regarding verbosity, and CNF minimisation
+
+18/05/2010 -- Version 1.0
+First release. Fact-propagation option added, and variable
+naming has been fixed -- didn't name output variables before
+
 12/05/2010 -- Version 0.9
 Pre-release. Contains lots of options and descriptions
 for ciphers:
