@@ -61,7 +61,6 @@ public:
     void print_satfile(const string name, const map<uint, uint>& same_vars);
     
     static bool use_xor_clauses; ///<Should we use xor-clauses? If not, then cutting will be done
-    static uint xor_cut_len; ///<If not using xor-clauses what should be the cutting lenght? (default to 7)
     
     double solving_time;
     

@@ -117,11 +117,11 @@ int main(int argc, char *argv[])
     }
     
     if (vm.count("xorcut")) {
-        SolverAttrib::xor_cut_len= vm["xorcut"].as<int>();
+        cpd.xor_cut_len= vm["xorcut"].as<int>();
     } else {
-        SolverAttrib::xor_cut_len= 7;
+        cpd.xor_cut_len= 7;
     }
-    cout << "xor-cut set at:" << SolverAttrib::xor_cut_len << endl;
+    cout << "xor-cut set at:" << cpd.xor_cut_len << endl;
     
     if (vm.count("crypto")) {
         cpd.set_name(vm["crypto"].as<string>());

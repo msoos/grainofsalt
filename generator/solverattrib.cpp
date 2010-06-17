@@ -12,12 +12,11 @@
 using boost::lexical_cast;
 
 bool SolverAttrib::use_xor_clauses;
-uint SolverAttrib::xor_cut_len;
 
 std::ostream& operator << (std::ostream& os, const vector<Lit>& v);
 
 SolverAttrib::SolverAttrib() :
-    xor_permutator(xor_cut_len)
+    xor_permutator(cpd.xor_cut_len)
 {
 }
 
@@ -218,7 +217,7 @@ void SolverAttrib::addXorClause(vector<Lit>& lits, const uint clause_group, cons
             //chain it
             if (i > 0) newlits.push_back(Lit(last_var, false));
             
-            while ((newlits.size() < xor_cut_len-1) && (i < lits.size()))
+            while ((newlits.size() < cpd.xor_cut_len-1) && (i < lits.size()))
                 newlits.push_back(lits[i++]);
             
             if (i < lits.size()) {
