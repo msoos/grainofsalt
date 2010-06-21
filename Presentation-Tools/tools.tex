@@ -1,0 +1,393 @@
+\documentclass[xcolor=usenames,xcolor=svgnames,table,slidestop,compress,mathserif]{beamer}
+%\documentclass{beamer}
+\usepackage[utf8x]{inputenc}
+%\usepackage{pgf}
+\usepackage{graphicx}
+\usepackage[usenames,svgnames]{xcolor}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{floatflt}
+\usepackage{booktabs} %for nice tables
+\usepackage{multirow}
+\usepackage{qtree}
+\usepackage{subfigure}
+\usepackage{textcomp} %for uparrow
+%\usepackage{tweaklist}
+\usepackage{fancybox}
+\usepackage{verbatim}
+\newcommand{\rd}[0]{\ensuremath{\mathcal{R}}}
+\newcommand{\rds}[0]{\ensuremath{\mathcal{R}} }
+\newcommand{\adv}[0]{\ensuremath{\mathcal{A}} }
+
+\newcommand{\outc}[2] {\overline{c_{#1}}\langle #2 \rangle}
+\newcommand{\realeq}{\stackrel{\Delta}{=}}
+\newcommand{\ki}[0]{\texttt{<}}
+\newcommand{\be}[0]{\texttt{>}}
+\usepackage[algoruled, linesnumbered, lined]{algorithm2e} %algorithms
+
+\usepackage{beamerthemesplit}
+%\usetheme{Berlin}
+%\usetheme{Singapore}
+%\useoutertheme{miniframes}
+
+\usetheme{Madrid}
+%\usetheme{Antibes}
+
+%\usecolortheme{lily}
+\usecolortheme{seahorse}
+
+%\beamertemplateshadingbackground{blue!5}{yellow!10}
+\beamertemplateshadingbackground{blue!6}{white}
+\beamertemplateballitem
+
+\newcommand{\comb}[2]{\ensuremath{\left(\begin{array}{c} #1\\ #2 \end{array} \right)}}
+
+\title[Grain of Salt]{Grain of Salt
+}
+\subtitle{An Automated Way to Test
+Stream Ciphers through SAT Solvers\\\tiny Presentation at Tools for Cryptanalysis}
+\author{\sc Mate Soos}
+\institute{Paris LIP6, SALSA Team}
+
+\date{23rd June 2010}
+
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+%\newcommand{\outc}[2] {\overline{c_{#1}}\langle #2 \rangle}
+%\newcommand{\realeq}{\stackrel{\Delta}{=}}
+%\newcommand{\ki}[0]{\texttt{<}}
+%\newcommand{\be}[0]{\texttt{>}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\frame{
+\frametitle{Table of Contents}
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\setcounter{tocdepth}{2}
+
+\section{Context}
+
+%\subsection{Motivations and goals}
+\frame
+{
+\frametitle{Motivations and goals}
+\begin{beamerboxesrounded}[shadow=true]{Motivations}
+   \begin{itemize}
+    \item Stream ciphers may be broken using SAT solving tools
+    \item Analysis of stream ciphers is possible using SAT solvers
+   \end{itemize}
+\end{beamerboxesrounded}
+
+\bigskip
+\begin{beamerboxesrounded}[shadow=true]{Goals}
+   \begin{itemize}
+    \item Describe different methods to translate shift register-based stream ciphers to SAT problems
+    \item Demonstrate a tool that can help in this process
+   \end{itemize}
+\end{beamerboxesrounded}
+}
+
+\subsection{SAT solvers}
+\frame
+{
+\frametitle{What is a SAT solver}
+\begin{beamerboxesrounded}[shadow=true]{Solves a problem in CNF}
+CNF is an ``\texttt{and} of \texttt{or}-s''
+\begin{displaymath}
+   (x_1 \vee \neg x_3)  \quad \wedge \quad (\neg x_2 \vee x_3) \quad \wedge \quad (x_1 \vee x_2)
+\end{displaymath}
+\end{beamerboxesrounded}
+
+\smallskip
+\begin{beamerboxesrounded}[shadow=true]{Uses DPLL($\varphi$) algorithm}
+  \begin{enumerate}
+  \small
+   \item If formula $\varphi$ is trivial, return SAT/UNSAT
+   \item ret = DPLL($\varphi$ with $v$ $\leftarrow$ \texttt{true})
+   \item if ret == SAT, return SAT
+   \item ret = DPLL($\varphi$ with $v$ $\leftarrow$ \texttt{false})
+   \item if ret == SAT, return SAT
+   \item return UNSAT
+ \end{enumerate}
+ \end{beamerboxesrounded}
+}
+
+\frame
+{
+\frametitle{Search tree}
+\begin{columns}[T]
+  \begin{column}{8.5cm}
+  \begin{beamerboxesrounded}[shadow=true]{Example search tree}
+
+  \begin{figure}[ht]
+  \begin{center}
+  \includegraphics[width=8.6cm]{search_graph/search_graph2}
+  \end{center}
+  \end{figure}
+  
+  \end{beamerboxesrounded}
+  \end{column}
+  
+  \begin{column}{3cm}
+   \begin{beamerboxesrounded}[shadow=true]{Visualised}
+   \tiny
+   %\renewcommand{\itemhook}{\setlength{\topsep}{0pt} \setlength{\itemsep}{0pt}}
+    \begin{itemize}
+     \item Guesses
+     \item Propagations
+     \item Generated learnt clauses
+     \item Clause group causing the propagation
+    \end{itemize}
+   \end{beamerboxesrounded}
+   
+   \bigskip
+   \begin{beamerboxesrounded}[shadow=true]{Calculated stats}
+   \tiny
+    \begin{itemize}
+     \item Average depth
+     \item Most conflicted clauses
+     \item No. of guess/branch
+     \item Most guessed vars
+     \item Most propagated vars
+    \end{itemize}
+   \end{beamerboxesrounded}
+ 
+  \end{column}
+  
+\end{columns}
+}
+
+% \frame
+% {\frametitle{SAT solver internals}
+% \begin{beamerboxesrounded}[shadow=true]{Conflict clauses}
+%    \begin{itemize}
+%     \item Generated when current assignment doesn't satisfy a clause
+%     \item Collection of information leading to conflict
+%     \item Used to avoid similar wrong parts of the tree next time
+%    \end{itemize}
+% \end{beamerboxesrounded}
+% 
+% \bigskip
+% \begin{beamerboxesrounded}[shadow=true]{Most important parts}
+%    \begin{itemize}
+%     \item Lazy data structures
+%     \item Learning (and forgetting)
+%     \item How to pick a variable
+%     \item When to restart
+%    \end{itemize}
+% \end{beamerboxesrounded}
+% }
+
+\subsection{Stream ciphers}
+
+\frame
+{
+\frametitle{Stream ciphers}
+\begin{beamerboxesrounded}[shadow=true]{Shift register-based stream ciphers}
+\begin{itemize}
+ \item Use a set of \emph{shift registers}
+ \item Shift registers' \emph{feedback function} is either linear or non-linear
+ \item Uses a \emph{filter function} to generate 1 secret bit from the state
+ \item Working: clock-filter-clock-filter\ldots feedback-filter-feedback-filter\ldots
+\end{itemize}
+\end{beamerboxesrounded}
+
+\begin{beamerboxesrounded}[shadow=true]{Example cipher}
+\begin{figure}
+\centering
+\includegraphics[height=4cm]{stream_cipher/stream_cipher}
+\end{figure}
+\end{beamerboxesrounded}
+}
+
+\section{Translating shift register-based stream ciphers to SAT problems}
+
+\frame
+{\frametitle{Translating shift register-based stream ciphers to CNF}
+\begin{beamerboxesrounded}[shadow=true]{Unwinding time}
+\begin{itemize}
+ \item SAT solvers don't understand the notion of ``time''
+ \item We must present the problem as if no timing was involved
+ \item To make unwinding simple, regular clocking is needed
+\end{itemize}
+\end{beamerboxesrounded}
+
+\smallskip
+
+\begin{beamerboxesrounded}[shadow=true]{Describe feedback and filter functions}
+\begin{itemize}
+ \item Translate ANF (Algebraic Normal Form) to CNF
+ \item Either through XORs and Monomials
+ \item Or through direct translation using Karnaugh maps
+\end{itemize}
+\end{beamerboxesrounded}
+
+\smallskip
+
+\begin{beamerboxesrounded}[shadow=true]{Give help bits to aid solving}
+\begin{itemize}
+ \item Select and fix shift register states and solve for random problems
+ \item Select shift register states randomly, fix randomly, and solve for random problems
+\end{itemize}
+\end{beamerboxesrounded}
+}
+
+\subsection{Unwinding time}
+
+\frame
+{\frametitle{Unwinding time}
+\begin{beamerboxesrounded}[shadow=true]{Problems}
+\begin{itemize}
+ \item CNF cannot handle the notion of ``time''
+ \item Must present all shift register states in the CNF at once
+ \item Need to ``unwind'' time
+ \item No irregular clockings
+\end{itemize}
+\end{beamerboxesrounded}
+
+\bigskip
+
+\begin{beamerboxesrounded}[shadow=true]{Example}
+\begin{itemize}
+ \item Crypto1 state: 48 bits
+ \item We have observed 56 bits of output
+ \item We want to clock 56 times for 56 bits of output
+ 
+ \smallskip
+ \includegraphics[width=9cm]{shifting/unwind}
+\end{itemize}
+\end{beamerboxesrounded}
+}
+
+\frame
+{\frametitle{Unwinding the time}
+\begin{beamerboxesrounded}[shadow=true]{Base-shifting}
+\begin{itemize}
+\item If the feedback functions are reversible, we can start in the middle
+\item Usually best to shift to the middle:
+
+\smallskip
+\includegraphics[width=9cm]{shifting/shifting}
+
+\item The total depth of the search is then halved
+\end{itemize}
+\end{beamerboxesrounded}
+
+\bigskip
+
+\begin{beamerboxesrounded}[shadow=true]{Grain of Salt}
+\begin{itemize}
+\item \texttt{./grainofsalt --outputs 56 --crypto crypto1\\
+                            \qquad \qquad \qquad \quad --base-shift 32}
+\item \texttt{./grainofsalt --outputs 160 --crypto grain\\
+                            \qquad \qquad \qquad \quad --base-shift 80,80}
+\end{itemize}
+\end{beamerboxesrounded}
+}
+
+\subsection{Describing feedback and filter functions}
+\frame
+{\frametitle{Describing feedback and filter functions}
+\begin{beamerboxesrounded}[shadow=true]{ANF$\rightarrow$CNF}
+\begin{itemize}
+ \item ANF (Algebraic Normal Form): $a = bc \oplus b \oplus c$
+ \item Must be converted to CNF: $x \vee y = \texttt{true}$
+ \item Assign each higher degree monomial an internal variable
+ \item Describe the XOR as CNF
+\end{itemize}
+\end{beamerboxesrounded}
+
+\begin{beamerboxesrounded}[shadow=true]{Extended monomials}
+\begin{itemize}
+ \item CNF does not limit terms to be non-negated as ANF does
+ \item We can use monomials that have negations
+ \item $bc\oplus b = b(c+1) = b\neg c$
+ \item $bc\oplus b \oplus = \neg b \neg c$
+ \item Default in \texttt{grainofsalt}, can be removed with \texttt{--noextmonomials}
+%  \begin{align}
+%  \neg b \vee \neg c \vee i_1\\
+%  b \vee \neg i_1\\
+%  c \vee \neg i_1\\
+%  \end{align}
+\end{itemize}
+\end{beamerboxesrounded}
+
+\begin{beamerboxesrounded}[shadow=true]{Karnaugh maps}
+\end{beamerboxesrounded}
+
+% \begin{beamerboxesrounded}[shadow=true]{XOR$\rightarrow$CNF}
+% \begin{itemize}
+%  \item $i_i \oplus b \oplus c = true$ represented as:
+% \begin{align}
+%  i_1 \vee b \vee c\\
+%  \neg i_1 \vee \neg b \vee c\\
+%  \neg i_1 \vee b \vee \neg c\\
+%  i_1 \vee \neg b \vee \neg c\\
+%  \end{align}
+%  \item if XOR is too large, internal it must be cut into pieces
+% \end{itemize}
+% \end{beamerboxesrounded}
+}
+
+
+\subsection{Help bits}
+
+
+\section{Conclusions}
+\frame[c]
+{\frametitle{Conclusions}
+
+\begin{beamerboxesrounded}[shadow=true]{Concluding remarks}
+\begin{itemize}
+ \item SAT is effective at analysing cryptographic problems
+ \item SAT can break simple cryptographic routines
+ \item Complex ciphers: careful translation is needed
+\end{itemize}
+\end{beamerboxesrounded}
+
+\bigskip
+\begin{beamerboxesrounded}[shadow=true]{Future work}
+\begin{itemize}
+ \item Recover information from CNF
+
+ \item Add information to the CNF
+ 
+  \qquad e.g. variable categories: key, ciphertext, side-channel info
+ \item Handle probabilistic information
+\end{itemize}
+\end{beamerboxesrounded}
+
+}
+
+\frame[c]
+{
+   \begin{figure}
+   \begin{center}
+ {\huge
+  Thank you for your time}
+ \bigskip
+
+\bigskip
+
+\Large
+Any questions?
+   \end{center}
+   \end{figure}
+}
+
+
+\end{document}
