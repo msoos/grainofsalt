@@ -15,7 +15,8 @@
 \usepackage{textcomp} %for uparrow
 %\usepackage{tweaklist}
 \usepackage{fancybox}
-\usepackage{verbatim}
+%\usepackage{verbatim}
+\usepackage{subfigure}
 \newcommand{\rd}[0]{\ensuremath{\mathcal{R}}}
 \newcommand{\rds}[0]{\ensuremath{\mathcal{R}} }
 \newcommand{\adv}[0]{\ensuremath{\mathcal{A}} }
@@ -51,7 +52,6 @@ Stream Ciphers through SAT Solvers\\\tiny Presentation at Tools for Cryptanalysi
 \institute{Paris LIP6, SALSA Team}
 
 \date{23rd June 2010}
-
 
 \AtBeginSection[]
 {
@@ -327,6 +327,12 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 \end{beamerboxesrounded}
 
 \begin{beamerboxesrounded}[shadow=true]{Karnaugh maps}
+\begin{itemize}
+ \item Uses Karnaugh maps to map functions to CNF
+ \item Does not need internal variables
+ \item May generate substantially smaller function descriptions
+\end{itemize}
+
 \end{beamerboxesrounded}
 
 % \begin{beamerboxesrounded}[shadow=true]{XOR$\rightarrow$CNF}
@@ -343,6 +349,24 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 % \end{beamerboxesrounded}
 }
 
+\begin{frame}[fragile]
+\frametitle{Translating shift register-based stream ciphers to CNF}
+
+\begin{beamerboxesrounded}[shadow=true]{Function descriptions in \texttt{grainofsalt}}
+%\begin{itemize}
+\begin{verbatim}
+sr1-62
+sr1-51
+sr1-38
+sr1-23
+sr1-13
+sr1-0
+\end{verbatim}
+
+deeF
+%\end{itemize}
+\end{beamerboxesrounded}
+\end{frame}
 
 \subsection{Help bits}
 
