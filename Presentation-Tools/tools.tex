@@ -306,17 +306,15 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 \begin{itemize}
  \item ANF (Algebraic Normal Form): $a = bc \oplus b \oplus c$
  \item Must be converted to CNF: $x \vee y = \texttt{true}$
- \item Assign each higher degree monomial an internal variable
- \item Describe the XOR as CNF
+ \item[1] Assign each higher degree monomial an internal variable
+ \item[2] Describe the XOR as CNF
 \end{itemize}
 \end{beamerboxesrounded}
 
 \begin{beamerboxesrounded}[shadow=true]{Extended monomials}
 \begin{itemize}
  \item CNF does not limit terms to be non-negated as ANF does
- \item We can use monomials that have negations
- \item $bc\oplus b = b(c+1) = b\neg c$
- \item $bc\oplus b \oplus = \neg b \neg c$
+ \item $bc\oplus b \oplus c= b(c+1) \oplus c= (b+1)(c+1)\oplus 1 = \neg b \neg c \oplus 1$
  \item Default in \texttt{grainofsalt}, can be removed with \texttt{--noextmonomials}
 %  \begin{align}
 %  \neg b \vee \neg c \vee i_1\\
@@ -353,23 +351,79 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 \frametitle{Translating shift register-based stream ciphers to CNF}
 
 \begin{beamerboxesrounded}[shadow=true]{Function descriptions in \texttt{grainofsalt}}
-%\begin{itemize}
-\begin{verbatim}
+File \texttt{grain/functions/sr0/feedback.txt}
+{\small\begin{verbatim}
 sr1-62
 sr1-51
 sr1-38
 sr1-23
 sr1-13
 sr1-0
-\end{verbatim}
-
-deeF
-%\end{itemize}
+\end{verbatim}}
+Defines feedback function:
+$s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
 \end{beamerboxesrounded}
+
+\begin{beamerboxesrounded}[shadow=true]{Arbitrary functions}
+\begin{itemize}
+ \item Arbitrary functions can be defined and used in other functions
+ \item Dependency graph is built from output bits, only used functions are generated in CNF
+ \item Allows to efficiently map ciphers built from functional blocks
+\end{itemize}
+\end{beamerboxesrounded}
+
 \end{frame}
 
 \subsection{Help bits}
 
+\frame
+{\frametitle{Help bits}
+\begin{beamerboxesrounded}[shadow=true]{Why?}
+\begin{itemize}
+ \item Usually the generated problem is too slow to solve
+ \item Except when breaking Crypto-1 (London travel card) --- 40sec. approx
+ \item[1] Give bits at fixed positions, multiply
+ \item[2] Give bits at random positions, extrapolate
+\end{itemize}
+\end{beamerboxesrounded}
+
+\bigskip
+
+\begin{beamerboxesrounded}[shadow=true]{Given information use}
+\begin{itemize}
+\item Recursively propagated at the ANF level
+\item Monomials are replaced with their constant equivalents
+\item Monomials are replaced with their monomial equivalents
+\item To disable: \texttt{--nopropagate}
+\end{itemize}
+\end{beamerboxesrounded}
+}
+
+\frame
+{\frametitle{Help bits}
+\begin{beamerboxesrounded}[shadow=true]{Fixed help bits}
+\begin{itemize}
+\item Difficult to know which combination of variables will be fastest
+\item Automated, randomised (Monte Carlo) greedy algorithm
+\item Sets all bits, tests difficulty based on generated CNF size
+\item Average smallest size wins
+\item To generate: \texttt{--genDeterBits N} To use: \texttt{--deterBits N}
+\end{itemize}
+\end{beamerboxesrounded}
+
+\smallskip
+
+\begin{beamerboxesrounded}[shadow=true]{Probabilistic help bits}
+\begin{itemize}
+\item Fix $n$ randomly picked vars randomly, measure time
+\item Do above step (\emph{everything} random) many times and average
+\item Do above steps for $n-1,n-2\ldots$ until possible
+\item Plot graph --- if done well, it is perfectly exponential
+\item But exponential factor $\ll 2$
+\item To use: \texttt{--probBits N}
+\end{itemize}
+\end{beamerboxesrounded}
+}
 
 \section{Conclusions}
 \frame[c]
@@ -377,21 +431,16 @@ deeF
 
 \begin{beamerboxesrounded}[shadow=true]{Concluding remarks}
 \begin{itemize}
- \item SAT is effective at analysing cryptographic problems
- \item SAT can break simple cryptographic routines
- \item Complex ciphers: careful translation is needed
+ \item \texttt{grainofsalt} gives an integrated platform to conduct experiments with SAT solvers on shift register-based stream ciphers
+ \item It is GPL, with open GIT repository, well-documented, and extensible
 \end{itemize}
 \end{beamerboxesrounded}
 
 \bigskip
 \begin{beamerboxesrounded}[shadow=true]{Future work}
 \begin{itemize}
- \item Recover information from CNF
-
- \item Add information to the CNF
- 
-  \qquad e.g. variable categories: key, ciphertext, side-channel info
- \item Handle probabilistic information
+ \item Add more ciphers --- they are very simple to describe
+ \item Could be integrated into \texttt{sage} partially and/or fully
 \end{itemize}
 \end{beamerboxesrounded}
 
