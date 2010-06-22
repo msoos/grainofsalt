@@ -375,8 +375,17 @@ $s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
  \item Allows to efficiently map ciphers built from functional blocks
 \end{itemize}
 \end{beamerboxesrounded}
-
 \end{frame}
+
+\frame[c]
+{\frametitle{Describing feedback and filter functions}
+\begin{figure}
+\centering
+\includegraphics[height=4.5cm]{crypto1_2.pdf}
+\caption{Crypto-1 cipher filter function diagram}
+\end{figure}
+}
+
 
 \subsection{Help bits}
 
@@ -435,7 +444,7 @@ $s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
 \begin{beamerboxesrounded}[shadow=true]{Flow diagram}
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{diagram/drawing}
+\includegraphics[width=12cm]{diagram/drawing}
 %\caption{Valami}
 \end{figure}
 \end{beamerboxesrounded}
@@ -444,7 +453,7 @@ $s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
 \begin{itemize}
  \item \texttt{./grainofsalt --crypto grain --outputs 100 --genDeterBits 60}
  \item \texttt{./grainofsalt --crypto grain --outputs 100 --stats --cnfDir generatedCNFs --num 100 --deterBits 55}
- \item \texttt{./grainofsalt --crypto trivium --outputs 180 --init no  --base-shift 60.60,60 --probBits 100}
+ %\item \texttt{./grainofsalt --crypto trivium --outputs 180 --init no  --base-shift 60.60,60 --probBits 100}
 \end{itemize}
 \end{beamerboxesrounded}
 }

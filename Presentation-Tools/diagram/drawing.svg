@@ -298,9 +298,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.50383782"
-     inkscape:cx="836.13662"
-     inkscape:cy="295.04628"
+     inkscape:zoom="0.5759723"
+     inkscape:cx="805.53899"
+     inkscape:cy="301.71155"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -319,7 +319,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -336,15 +336,6 @@
        x="460.9313"
        y="203.46547"
        ry="40.517918" />
-    <rect
-       style="fill:#957bf6;fill-opacity:1;stroke:#000000;stroke-width:3.55504012;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:6.69999981;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect4573"
-       width="265.5527"
-       height="499.37457"
-       x="1114.6199"
-       y="136.51627"
-       ry="49.323421"
-       rx="51.27914" />
     <text
        xml:space="preserve"
        style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
@@ -474,32 +465,7 @@
          style="fill:none;stroke:#000000;stroke-width:12.76996899;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:6.69999981;stroke-opacity:1;stroke-dasharray:none" />
     </g>
     <g
-       id="g4275"
-       transform="translate(-164.82394,521.03639)">
-      <rect
-         ry="45.298573"
-         y="-9.5671101"
-         x="1300.4565"
-         height="90.597145"
-         width="231.59715"
-         id="rect3623-1-2"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="100%"
-         id="text3625-5-0"
-         y="29.971525"
-         x="1412.2052"
-         style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-         xml:space="preserve"><tspan
-           id="tspan4185"
-           y="29.971525"
-           x="1412.2052"
-           sodipodi:role="line">ExtMono</tspan><tspan
-           id="tspan4189"
-           y="65.971527"
-           x="1412.2052"
-           sodipodi:role="line">converter</tspan></text>
-    </g>
+       id="g3760" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot4191"
@@ -511,36 +477,49 @@
            height="248.30449"
            x="1099.9657"
            y="-235.98045" /></flowRegion><flowPara
-         id="flowPara4197"></flowPara></flowRoot>    <g
-       id="g4281"
-       transform="translate(-248.71672,-82.320331)">
+         id="flowPara4197" /></flowRoot>    <rect
+       style="fill:#957bf6;fill-opacity:1;stroke:#000000;stroke-width:3.83901024;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:6.69999981;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect4573"
+       width="266.03275"
+       height="380.43915"
+       x="1112.6437"
+       y="190.51544"
+       ry="37.576122"
+       rx="51.371838" />
+    <g
+       id="g3806"
+       transform="translate(0,-17.361946)">
       <rect
-         ry="45.298573"
-         y="470.79764"
-         x="1381.6776"
-         height="90.597145"
-         width="231.59715"
-         id="rect3623-1-2-9"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="rect3623-1-2"
+         width="228.37968"
+         height="120.36737"
+         x="1134.1855"
+         y="455.64468"
+         ry="60.183685" />
       <text
          sodipodi:linespacing="100%"
-         id="text3625-5-0-2"
-         y="510.33627"
-         x="1493.4263"
+         id="text3625-5-0"
+         y="492.2551"
+         x="1249.6036"
          style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
          xml:space="preserve"><tspan
-           id="tspan4189-6"
-           y="510.33627"
-           x="1493.4263"
-           sodipodi:role="line">XOR</tspan><tspan
-           id="tspan4232"
-           y="546.3363"
-           x="1493.4263"
+           id="tspan4185"
+           y="492.2551"
+           x="1249.6036"
+           sodipodi:role="line">ExtMono</tspan><tspan
+           id="tspan3758"
+           y="528.25513"
+           x="1249.6036"
+           sodipodi:role="line">and XOR</tspan><tspan
+           id="tspan4189"
+           y="564.25513"
+           x="1249.6036"
            sodipodi:role="line">converter</tspan></text>
     </g>
     <g
        id="g4269"
-       transform="translate(249.89227,270.41129)">
+       transform="translate(248.15608,322.49713)">
       <rect
          ry="45.298573"
          y="-4.925909"
@@ -568,17 +547,17 @@
     <text
        xml:space="preserve"
        style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="1243.7979"
-       y="185.47141"
+       x="1242.0616"
+       y="247.97443"
        id="text4575"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
          id="tspan4577"
-         x="1243.7979"
-         y="185.47141">ANF-to-CNF</tspan><tspan
+         x="1242.0616"
+         y="247.97443">ANF-to-CNF</tspan><tspan
          sodipodi:role="line"
-         x="1243.7979"
-         y="221.47141"
+         x="1242.0616"
+         y="283.97443"
          id="tspan4579">converter</tspan></text>
     <g
        id="g3920-3-2-2"
@@ -644,75 +623,79 @@
          d="M 601.04645,818.67265 571.03188,847.6172"
          style="fill:none;stroke:#000000;stroke-width:8.23621845;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:6.69999981;stroke-opacity:1;stroke-dasharray:none" />
     </g>
-    <rect
-       style="fill:#8de740;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect2816-8-7"
-       width="223.37958"
-       height="277.1506"
-       x="1481.3179"
-       y="259.59866" />
-    <text
-       xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="1590.1265"
-       y="302.54504"
-       id="text3590-4-6"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         x="1590.1265"
+    <g
+       id="g3813"
+       transform="translate(0,-14.944778)">
+      <rect
+         y="261.33487"
+         x="1481.3179"
+         height="277.1506"
+         width="223.37958"
+         id="rect2816-8-7"
+         style="fill:#8de740;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         sodipodi:linespacing="100%"
+         id="text3590-4-6"
          y="302.54504"
-         id="tspan3594-0-5">CNF</tspan></text>
-    <g
-       id="g5213"
-       transform="translate(3.9847657,-11.908594)">
-      <rect
-         y="339.92282"
-         x="1500.2799"
-         height="81.954445"
-         width="181.53349"
-         id="rect4790"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="100%"
-         id="text4792"
-         y="376.93451"
-         x="1588.4031"
+         x="1590.1265"
          style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
          xml:space="preserve"><tspan
+           id="tspan3594-0-5"
+           y="302.54504"
+           x="1590.1265"
+           sodipodi:role="line">CNF</tspan></text>
+      <g
+         transform="translate(3.9847657,-11.908594)"
+         id="g5213">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4790"
+           width="181.53349"
+           height="81.954445"
+           x="1500.2799"
+           y="339.92282" />
+        <text
+           xml:space="preserve"
+           style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+           x="1588.4031"
            y="376.93451"
-           x="1588.4031"
-           id="tspan4794"
-           sodipodi:role="line">Variable</tspan><tspan
-           id="tspan4796"
-           y="412.93451"
-           x="1588.4031"
-           sodipodi:role="line">names</tspan></text>
-    </g>
-    <g
-       id="g5219"
-       transform="translate(2,0)">
-      <rect
-         y="437.2988"
-         x="1502.9236"
-         height="81.954445"
-         width="181.53349"
-         id="rect4790-6"
-         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <text
-         sodipodi:linespacing="100%"
-         id="text4792-3"
-         y="474.31049"
-         x="1591.0468"
-         style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-         xml:space="preserve"><tspan
-           id="tspan4796-7"
+           id="text4792"
+           sodipodi:linespacing="100%"><tspan
+             sodipodi:role="line"
+             id="tspan4794"
+             x="1588.4031"
+             y="376.93451">Variable</tspan><tspan
+             sodipodi:role="line"
+             x="1588.4031"
+             y="412.93451"
+             id="tspan4796">names</tspan></text>
+      </g>
+      <g
+         transform="translate(2,0)"
+         id="g5219">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4790-6"
+           width="181.53349"
+           height="81.954445"
+           x="1502.9236"
+           y="437.2988" />
+        <text
+           xml:space="preserve"
+           style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+           x="1591.0468"
            y="474.31049"
-           x="1591.0468"
-           sodipodi:role="line">Function</tspan><tspan
-           id="tspan4831"
-           y="510.31049"
-           x="1591.0468"
-           sodipodi:role="line">names</tspan></text>
+           id="text4792-3"
+           sodipodi:linespacing="100%"><tspan
+             sodipodi:role="line"
+             x="1591.0468"
+             y="474.31049"
+             id="tspan4796-7">Function</tspan><tspan
+             sodipodi:role="line"
+             x="1591.0468"
+             y="510.31049"
+             id="tspan4831">names</tspan></text>
+      </g>
     </g>
     <g
        id="g5196"
@@ -741,90 +724,80 @@
            x="570.45813"
            sodipodi:role="line">shifter</tspan></text>
     </g>
-    <rect
-       style="fill:#8de740;fill-opacity:1;stroke:#000000;stroke-width:4.58827829;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect2816-8-7-1"
-       width="222.69063"
-       height="384.4393"
-       x="131.53979"
-       y="192.12254" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect4790-9"
-       width="181.53349"
-       height="81.954445"
-       x="150.15735"
-       y="286.46097" />
-    <text
-       xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="239.42921"
-       y="334.95963"
-       id="text4792-7"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         x="239.42921"
+    <g
+       id="g3739"
+       transform="translate(1.9792619,21.112127)">
+      <rect
+         y="191.95135"
+         x="131.36861"
+         height="328.70258"
+         width="223.03299"
+         id="rect2816-8-7-1"
+         style="fill:#8de740;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         y="286.46097"
+         x="150.15735"
+         height="81.954445"
+         width="181.53349"
+         id="rect4790-9"
+         style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="100%"
+         id="text4792-7"
          y="334.95963"
-         id="tspan5054">Config</tspan></text>
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect4790-6-8"
-       width="181.53349"
-       height="81.954445"
-       x="152.80103"
-       y="383.83694" />
-    <text
-       xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="240.92419"
-       y="420.84863"
-       id="text4792-3-8"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         x="240.92419"
-         y="420.84863"
-         id="tspan4831-1">Filter</tspan><tspan
-         sodipodi:role="line"
-         x="240.92419"
-         y="456.84863"
-         id="tspan5060">functions</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="238.57544"
-       y="226.94633"
-       id="text3590"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         id="tspan3592"
+         x="239.42921"
+         style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           id="tspan5054"
+           y="334.95963"
+           x="239.42921"
+           sodipodi:role="line">Config</tspan></text>
+      <g
+         transform="translate(215.07979,9.8963093)"
+         id="g3732">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4790-6-8"
+           width="184.11778"
+           height="112.24841"
+           x="-63.900787"
+           y="379.5759" />
+        <text
+           xml:space="preserve"
+           style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+           x="27.823668"
+           y="412.93158"
+           id="text4792-3-8"
+           sodipodi:linespacing="100%"><tspan
+             sodipodi:role="line"
+             x="27.823668"
+             y="412.93158"
+             id="tspan2954">Feedback</tspan><tspan
+             sodipodi:role="line"
+             x="27.823668"
+             y="448.93158"
+             id="tspan2958">and filter</tspan><tspan
+             sodipodi:role="line"
+             x="27.823668"
+             y="484.93158"
+             id="tspan5060">functions</tspan></text>
+      </g>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3590"
+         y="226.94633"
          x="238.57544"
-         y="226.94633">Cipher</tspan><tspan
-         sodipodi:role="line"
-         x="238.57544"
-         y="262.94635"
-         id="tspan3594">description</tspan></text>
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="rect4790-6-8-8"
-       width="181.53349"
-       height="81.954445"
-       x="152.97482"
-       y="480.42282" />
-    <text
-       xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="241.09799"
-       y="517.43451"
-       id="text4792-3-8-9"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         x="241.09799"
-         y="517.43451"
-         id="tspan4831-1-6">Feedback</tspan><tspan
-         sodipodi:role="line"
-         x="241.09799"
-         y="553.43451"
-         id="tspan5060-4">functions</tspan></text>
+         style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="226.94633"
+           x="238.57544"
+           id="tspan3592"
+           sodipodi:role="line">Cipher</tspan><tspan
+           id="tspan3594"
+           y="262.94635"
+           x="238.57544"
+           sodipodi:role="line">description</tspan></text>
+    </g>
     <g
        id="g5191"
        transform="translate(3.9695313,-11.808337)">
