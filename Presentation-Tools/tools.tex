@@ -245,7 +245,7 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 
 \begin{beamerboxesrounded}[shadow=true]{Give help bits to aid solving}
 \begin{itemize}
- \item Select and fix shift register states and solve for random problems
+ \item Select and fix shift register states: guess-and-determine
  \item Select shift register states randomly, fix randomly, and solve for random problems
 \end{itemize}
 \end{beamerboxesrounded}
@@ -255,11 +255,10 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 
 \frame
 {\frametitle{Unwinding time}
-\begin{beamerboxesrounded}[shadow=true]{Problems}
+\begin{beamerboxesrounded}[shadow=true]{Why unwind?}
 \begin{itemize}
  \item CNF cannot handle the notion of ``time''
  \item Must present all shift register states in the CNF at once
- \item Need to ``unwind'' time
  \item No irregular clockings
 \end{itemize}
 \end{beamerboxesrounded}
@@ -270,7 +269,7 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 \begin{itemize}
  \item Crypto1 state: 48 bits
  \item We have observed 56 bits of output
- \item We want to clock 56 times for 56 bits of output
+ \item We need to clock 56 times
  
  \smallskip
  \includegraphics[width=9cm]{shifting/unwind}
@@ -320,7 +319,7 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 \begin{itemize}
  \item CNF does not limit terms to be non-negated as ANF does
  \item $bc\oplus b \oplus c= b(c+1) \oplus c= (b+1)(c+1)\oplus 1 = \neg b \neg c \oplus 1$
- \item Default in \texttt{grainofsalt}, can be removed with \texttt{--noextmonomials}
+ \item Default in \texttt{grainofsalt}, can be disabled with \texttt{--noextmonomials}
 %  \begin{align}
 %  \neg b \vee \neg c \vee i_1\\
 %  b \vee \neg i_1\\
@@ -353,7 +352,7 @@ CNF is an ``\texttt{and} of \texttt{or}-s''
 }
 
 \begin{frame}[fragile]
-\frametitle{Translating shift register-based stream ciphers to CNF}
+\frametitle{Describing feedback and filter functions}
 
 \begin{beamerboxesrounded}[shadow=true]{Function descriptions in \texttt{grainofsalt}}
 File \texttt{grain/functions/sr0/feedback.txt}
