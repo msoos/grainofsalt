@@ -48,10 +48,15 @@
 }
 \subtitle{An Automated Way to Test
 Stream Ciphers through SAT Solvers\\\tiny Presentation at Tools for Cryptanalysis}
-\author{\sc Mate Soos}
+\author[Mate Soos]{\sc Mate Soos\footnote{The author was supported by the RFID-AP ANR Project, project number
+\texttt{ANR-07-SESU-009}}}
 \institute{Paris LIP6, SALSA Team}
 
 \date{23rd June 2010}
+
+
+
+
 
 \AtBeginSection[]
 {
@@ -425,6 +430,26 @@ $s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
 \end{beamerboxesrounded}
 }
 
+\subsection{Overview}
+\frame{
+\frametitle{Overview}
+\begin{beamerboxesrounded}[shadow=true]{Flow diagram}
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{diagram/drawing}
+%\caption{Valami}
+\end{figure}
+\end{beamerboxesrounded}
+
+\begin{beamerboxesrounded}[shadow=true]{Example usage}
+\begin{itemize}
+ \item \texttt{./grainofsalt --crypto grain --outputs 100 --genDeterBits 60}
+ \item \texttt{./grainofsalt --crypto grain --outputs 100 --stats --cnfDir generatedCNFs --num 100 --deterBits 55}
+ \item \texttt{./grainofsalt --crypto trivium --outputs 180 --init no  --base-shift 60.60,60 --probBits 100}
+\end{itemize}
+\end{beamerboxesrounded}
+}
+
 \section{Conclusions}
 \frame[c]
 {\frametitle{Conclusions}
@@ -433,6 +458,7 @@ $s_{i+80} = s_{i+62} + s_{i+51} + s_{i+38} + s_{i+23} + s_{i+13} + s_i$
 \begin{itemize}
  \item \texttt{grainofsalt} gives an integrated platform to conduct experiments with SAT solvers on shift register-based stream ciphers
  \item It is GPL, with open GIT repository, well-documented, and extensible
+ \item \url{http://gitorious.com/grainofsalt/}
 \end{itemize}
 \end{beamerboxesrounded}
 
