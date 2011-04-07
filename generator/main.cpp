@@ -226,7 +226,7 @@ int main(int argc, char *argv[])
         }
         told_which_help = true;
         use_deterministic_help = true;
-        bits_of_help =  vm["probBits"].as<int>();
+        bits_of_help =  vm["deterBits"].as<int>();
         cout << "Using deterministic help bit calculation. Help bits given: " << bits_of_help << endl;
     }
     
