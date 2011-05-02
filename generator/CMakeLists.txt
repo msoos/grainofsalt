@@ -2,6 +2,8 @@ include_directories(${grainofsalt_SOURCE_DIR}/generator/MTRand)
 
 link_directories(${grainofsalt_BINARY_DIR}/espresso)
 
+add_definitions(-DBOOST_FILESYSTEM_DEPRECATED)
+
 add_executable(grainofsalt
 	bestbits.cpp
 	cipher.cpp
