@@ -34,4 +34,4 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E copy espresso/espresso_exec .
 )
 
-add_dependencies(copy espresso grainofsalt)
+add_dependencies(copy espresso_exec grainofsalt)
