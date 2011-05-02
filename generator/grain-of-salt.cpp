@@ -116,7 +116,7 @@ double GrainOfSalt::debug(const uint num)
             boost::filesystem::path filename = SolverAttrib::get_satfile_dir();
             filename /= cnf_filename(given_data) + ".output";
             ofstream file;
-            file.open(filename.native_file_string().c_str());
+            file.open(filename.file_string().c_str());
             for (uint i = 0; i < cpd.sr_num; i++)
                 check_found_state(file, solverAttrib, eqHolder, sr_state[i], i);
             file.close();
@@ -125,7 +125,7 @@ double GrainOfSalt::debug(const uint num)
             filename2 /= cnf_filename(given_data) + ".cnf";
             string toexec;
             toexec += "./cryptominisat \"";
-            toexec += filename2.native_file_string();
+            toexec += filename2.file_string();
             toexec += "\" > output.out";
             std::cout << "executing :" << toexec << std::endl;
             system(toexec.c_str());
@@ -172,7 +172,7 @@ bool GrainOfSalt::random_test(SolverAttrib& solverAttrib, EquationHolder& eqHold
         boost::filesystem::path filename = SolverAttrib::get_satfile_dir();
         filename /= cnf_filename(given_data) + ".output";
         ofstream file;
-        file.open(filename.native_file_string().c_str());
+        file.open(filename.file_string().c_str());
         
         if (good_guess) {
             for (uint i = 0; i < cpd.sr_num; i++)

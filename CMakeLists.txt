@@ -22,8 +22,6 @@ find_package( ZLIB )
 link_directories( ${ZLIB_LIBRARY} )
 include_directories( ${ZLIB_INCLUDE_DIR} )
 
-add_definitions(-DBOOST_FILESYSTEM_DEPRECATED)
-
 add_subdirectory(espresso)
 add_subdirectory(generator)
 

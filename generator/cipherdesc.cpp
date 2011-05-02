@@ -115,7 +115,7 @@ void CipherDesc::set_name(const string& _ciphername)
     ifstream file;
     bs::path filename = get_cipher_path();
     filename /= "config";
-    file.open(filename.native_file_string().c_str());
+    file.open(filename.file_string().c_str());
     if (!file)
         throw("Cannot find cipher description file (" + string(ciphername) + ")!");
 

@@ -81,9 +81,9 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     bs::path output_satfile_filename = get_satfile_dir();
     output_satfile_filename /= name;
     ofstream satfile;
-    satfile.open(output_satfile_filename.native_file_string().c_str());
+    satfile.open(output_satfile_filename.file_string().c_str());
     if (!satfile)
-        throw("Cannot open " + output_satfile_filename.native_file_string() + " for writing. Cannot write output file");
+        throw("Cannot open " + output_satfile_filename.file_string() + " for writing. Cannot write output file");
     
     setupPermutateVars();
     if (cpd.permutateVars)  permutateVars();

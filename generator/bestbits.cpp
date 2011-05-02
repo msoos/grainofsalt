@@ -71,12 +71,12 @@ void BestBits::write_best_bits_file() const
 
     bs::path filename(get_best_bit_filename());
     if (bs::exists(filename) && !bs::is_regular(filename))
-        throw("best bits not a regular file: " + filename.native_file_string());
+        throw("best bits not a regular file: " + filename.file_string());
 
     ofstream file;
-    file.open( filename.native_file_string().c_str());
+    file.open( filename.file_string().c_str());
     if (!file.is_open())
-        throw("Cannot open best bits file (" + filename.native_file_string() + ") for writing!");
+        throw("Cannot open best bits file (" + filename.file_string() + ") for writing!");
     BOOST_FOREACH(const DataElement& v, varstoguess)
         file << v << endl;
 
@@ -227,10 +227,10 @@ vector<DataElement> BestBits::read_file(const bs::path& filename, const uint max
     vector<DataElement> ret;
 
     if (!bs::exists(filename))
-        throw("Cannot find best bits file " + filename.native_file_string() + "!");
+        throw("Cannot find best bits file " + filename.file_string() + "!");
 
     ifstream file;
-    file.open(filename.native_file_string().c_str());
+    file.open(filename.file_string().c_str());
     string lineread;
     while (getline(file, lineread)) { // read line by line
         uint sr, var;

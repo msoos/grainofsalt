@@ -48,12 +48,12 @@ FuncDataHolder::FuncDataHolder()
     for (uint i = 0; i < cpd.sr_num; i++) {
         bs::path filename;
         filename = get_functions_dir() / ("sr" + lexical_cast<string>(i)) / "feedback.txt";
-        read_file_multiline(filename.native_file_string().c_str(), sr_feedback_data[i]);
+        read_file_multiline(filename.file_string().c_str(), sr_feedback_data[i]);
 
         if (cpd.init_clock > 0)  {
             bs::path filename;
             filename = get_functions_dir() / ("sr" + lexical_cast<string>(i)) / "feedback_init.txt";
-            read_file_multiline(filename.native_file_string().c_str(), sr_feedback_data_init[i]);
+            read_file_multiline(filename.file_string().c_str(), sr_feedback_data_init[i]);
         }
     }
 
@@ -65,7 +65,7 @@ FuncDataHolder::FuncDataHolder()
     for (uint i = 0; i < cpd.filter_num; i++) {
         bs::path filename;
         filename = get_functions_dir() / ("f" + lexical_cast<string>(i) + ".txt");
-        read_file_multiline(filename.native_file_string().c_str(), filter_data[i]);
+        read_file_multiline(filename.file_string().c_str(), filter_data[i]);
 #ifdef DO_SIMPLIFY
         simplify(filter_data[i]);
 #endif
@@ -76,7 +76,7 @@ FuncDataHolder::FuncDataHolder()
         assert(i == 0);
         bs::path filename;
         filename = get_functions_dir() / ("output.txt");
-        read_file_multiline(filename.native_file_string().c_str(), output_data[i]);
+        read_file_multiline(filename.file_string().c_str(), output_data[i]);
 #ifdef DO_SIMPLIFY
         simplify(output_data[i]);
 #endif

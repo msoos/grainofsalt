@@ -348,12 +348,12 @@ void EquationHolder::print_equations_set(const DataElement& type, const string& 
     std::cout << "Generating statistics into directory " << get_stats_dir().native_directory_string() << endl;
     
     bs::path filename = get_stats_dir() / name;
-    polyfile.open(filename.native_file_string().c_str());
+    polyfile.open(filename.file_string().c_str());
     if (polyfile.fail())
-        throw "cannot open file " + filename.native_file_string() + " for writing!";
+        throw "cannot open file " + filename.file_string() + " for writing!";
 
     bs::path filename_dist = get_stats_dir() / (name + "-dist");
-    distribfile.open(filename_dist.native_file_string().c_str());
+    distribfile.open(filename_dist.file_string().c_str());
 
     BOOST_FOREACH(const Equation& eq, equations) {
         if (type.type != any_type && eq.type.type != type.type) continue;
@@ -371,7 +371,7 @@ void EquationHolder::print_equations_set(const DataElement& type, const string& 
 void EquationHolder::print_equations() const
 {
     if ( !bs::exists(get_stats_dir()) ) {
-        cout << "The statistics directory '" << get_stats_dir().native_file_string() << "' does not exist." << endl
+        cout << "The statistics directory '" << get_stats_dir().file_string() << "' does not exist." << endl
         << "Please create it so that I can write statistics there!" << endl;
         exit(-1);
     }
@@ -396,9 +396,9 @@ void EquationHolder::print_equations() const
 
     ofstream monomial_size_distrib_file;
     bs::path filename = get_stats_dir() / "monos-dist";
-    monomial_size_distrib_file.open(filename.native_file_string().c_str());
+    monomial_size_distrib_file.open(filename.file_string().c_str());
     if (monomial_size_distrib_file.fail())
-        throw "cannot open file " + filename.native_file_string() + " for writing!";
+        throw "cannot open file " + filename.file_string() + " for writing!";
 
     vector<uint> monomial_size_distrib;
     BOOST_FOREACH(const Equation& eq, equations)
