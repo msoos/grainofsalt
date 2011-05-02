@@ -5,10 +5,9 @@ SET(CMAKE_BUILD_TYPE ${MY_BUILD_TYPE} CACHE STRING "..." FORCE)
 MARK_AS_ADVANCED(CMAKE_BUILD_TYPE )
 
 PROJECT(grainofsalt)
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -Wall -ggdb -mtune=native")
-SET(CMAKE_CXX_FLAGS_DEBUG "-Wall -O0 -ggdb")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -mtune=native -fomit-frame-pointer")
-SET(CMAKE_EXE_LINKER_FLAGS "-static")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -Wall -ggdb -mtune=native  -Wno-deprecated")
+SET(CMAKE_CXX_FLAGS_DEBUG "-Wall -O0 -ggdb -Wno-deprecated")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -mtune=native -Wno-deprecated")
 
 #FIND_PACKAGE(Threads REQUIRED)
 #set(thread_library "${CMAKE_THREAD_LIBS_INIT}")
@@ -22,6 +21,8 @@ find_library(GMP_LIBRARIES NAMES gmp libgmp)
 find_package( ZLIB )
 link_directories( ${ZLIB_LIBRARY} )
 include_directories( ${ZLIB_INCLUDE_DIR} )
+
+add_definitions(-DBOOST_FILESYSTEM_DEPRECATED)
 
 add_subdirectory(espresso)
 add_subdirectory(generator)
