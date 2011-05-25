@@ -1,4 +1,6 @@
 noinst_LTLIBRARIES = libmincov.la
+pkgincludesubdir = $(includedir)/espresso/mincov
+pkgincludesub_HEADERS = mincov.h  mincov_int.h
 
 AM_CFLAGS = $(all_includes) -I$(srcdir) \
 	      -I$(srcdir)/../main -I$(srcdir)/../mincov \

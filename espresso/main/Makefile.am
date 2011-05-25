@@ -1,4 +1,7 @@
 noinst_LTLIBRARIES = libmain.la
+pkgincludesubdir = $(includedir)/espresso/main
+pkgincludesub_HEADERS = espresso.h  main.h
+
 
 AM_CFLAGS = $(all_includes) -I$(srcdir) \
 	      -I$(srcdir)/../main -I$(srcdir)/../mincov \

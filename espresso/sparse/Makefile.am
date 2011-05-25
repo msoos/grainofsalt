@@ -1,4 +1,6 @@
 noinst_LTLIBRARIES = libsparse.la
+pkgincludesubdir = $(includedir)/espresso/sparse
+pkgincludesub_HEADERS = sparse.h  sparse_int.h
 
 AM_CFLAGS = $(all_includes) -I$(srcdir) \
 	      -I$(srcdir)/../main -I$(srcdir)/../mincov \

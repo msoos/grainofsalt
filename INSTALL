@@ -1,22 +1,13 @@
-======================
-Compile with cmake
-======================
-Go into the "build" directory, and issue:
+To compile, issue:
 
-cmake ../
-make
+$ cd build
+$ ../configure
+$ make
 
-You will then have the "grainofsalt" tool in the "build" directory.
+Please do NOT try to skip the "cd build". Your build will succeed, but
+it will not be useable.
 
+To use, issue, from directory 'build':
 
-
-======================
-Compile with autotools
-======================
-Go to the 'build' directory. Issue
-
-../configure
-make
-
-You will then have the "grainofsalt" tool in the "build" directory.
+$ ./grainofsalt --num 100 --outputs 90 --crypto grain
 

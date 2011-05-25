@@ -1,5 +1,8 @@
 noinst_LTLIBRARIES = libutil.la
 
+pkgincludesubdir = $(includedir)/espresso/util
+pkgincludesub_HEADERS = util.h  util-stdlib.h
+
 AM_CFLAGS = $(all_includes) -I$(srcdir) \
 	      -I$(srcdir)/../main -I$(srcdir)/../mincov \
 	      -I$(srcdir)/../util -I$(srcdir)/../sparse

@@ -1,6 +1,18 @@
 AM_CXXFLAGS = -Wall $(all_includes) -I$(srcdir) -I$(srcdir)/MTRand \
 	      -I$(srcdir)/../mtl
 
+pkgincludesubdir = $(includedir)/generator
+pkgincludesub_HEADERS = bestbits.h     dataelementrange.h  equation.h \
+	filereader.h     output_maker.h  time_mem.h \
+	cipherdesc.h   data_holder.h       equationholder.h \
+	grain-of-salt.h  polynomial.h    timer.h \
+	cipher.h       debug.h             equationstosat.h \
+	monomial.h       solverattrib.h  variables.h \
+	dataelement.h  defines.h           extendedmonomial.h \
+	mystack.h        SolverTypes.h   xor_computer.h \
+	MTRand/MersenneTwister.h
+
+
 bin_PROGRAMS = grainofsalt
 grainofsalt_SOURCES =  bestbits.cpp  dataelement.cpp  debug.cpp  \
 	equationstosat.cpp main.cpp  output_maker.cpp  variables.cpp \
