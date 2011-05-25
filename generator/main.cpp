@@ -87,206 +87,212 @@ int main(int argc, char *argv[])
         cout << "Some option you gave was wrong. Please give '--help' to get help" << endl;
         return 1;
     }
-    
-    if (vm.count("help")) {
-        cout << desc << "\n";
-        return 1;
-    }
-   
-    if (vm.count("outputs")) {
-        cpd.outputs = vm["outputs"].as<int>();
-        cout << "Number of outputs set to " << cpd.outputs << endl;
-    } else {
-        cout << "Number of outputs was not set. You must set it with --outputs NUM. Exiting\n";
-        return 1;
-    }
-    
-    if (vm.count("karnaugh")) {
-        cpd.max_karnaugh_table = vm["karnaugh"].as<int>();
-    } else {
-        cpd.max_karnaugh_table = 0;
-    }
-    cout << "Cut-off for karnaugh-table optimisation: " << cpd.max_karnaugh_table << endl;
-    
-    if (vm.count("noextmonomials")) {
-        cpd.noExtendedMonomial = true;
-        cout << "Extended monomials not used" << endl;
-    } else {
-        cpd.noExtendedMonomial = false;
-        cout << "Extended monomials used" << endl;
-    }
-    
-    if (vm.count("xorcut")) {
-        cpd.xor_cut_len= vm["xorcut"].as<int>();
-    } else {
-        cpd.xor_cut_len= 7;
-    }
-    cout << "xor-cut set at:" << cpd.xor_cut_len << endl;
-    
-    if (vm.count("crypto")) {
-        cpd.set_name(vm["crypto"].as<string>());
-        cout << "Loading crypto functions from directory '" << vm["crypto"].as<string>() << "'" << endl;
-    } else {
-        cout << "Option --crypto=NAME must be set!" << endl;
-        return 1;
-    }
-    
-    if (vm.count("init")) {
-        if (vm["init"].as<string>() == "yes") {
-            cout << "Initialisation clock set to " << cpd.init_clock  << ", the default given in the crypto function's description" << endl;
-        } else if (vm["init"].as<string>() == "no") {
-            cpd.init_clock = 0;
-            cout << "Initialisation disabled. The full state is the unknown" << endl;
-        } else {
-            cout << "Wrong option at --init=yes/no" << endl;
-            return 1;
-        }
-    }
-    
-    if (vm.count("base-shift")) {
-        vector<uint> base_shifts;
-        string line = vm["base-shift"].as<string>();
-        //parse(str.c_str(),(chseq<>(what) >> '=' >> ((uint_p[push_back_a(vec)] >> *(',' >> uint_p[push_back_a(vec)])) | end_p)), space_p);
-        if (!parse(line.c_str(),(((uint_p[push_back_a(base_shifts)] >> *(',' >> uint_p[push_back_a(base_shifts)])) | end_p)), space_p).full) {
-            cout << "Cannot parse 'base-shift' option " << line << "'. It should be comma-delimited" << endl;
-            exit(-1);
-        }
-        if (base_shifts.size() != cpd.sr_num) {
-            cout << "option 'base-shift' must contain exactly as many values (comma-delimited) as there are shift registers" << endl;
-            cout << "You gave " << base_shifts.size() << " values, but there are " << cpd.sr_num << " shift registers" << endl;
-            exit(-1);
-        }
-        try {
-            for (uint i = 0; i < cpd.sr_num; i++) {
-                cout << "Setting base shift of sr" << i << " to " << base_shifts[i] << endl;
-                cpd.set_shift(i, base_shifts[i]);
-            }
-        } catch(string s) {
-            cout << "Error:" << s << endl;
-            return 1;
-        }
-    } else {
-        cout << "No base shifting is used -- all of them are 0 base-shifted" << endl;
-    }
-    
-    if (vm.count("linearize")) {
-        cpd.linearizeLinearizeable = true;
-        std::cout << "Linearizing linearizeable feedback functions" << endl;
-    } else {
-        cpd.linearizeLinearizeable = false;
-        std::cout << "Not linearizing linearizeable feedback functions" << endl;
-    }
-    
-    if (vm.count("stats")) {
-        cpd.print_stats = true;
-        cout << "Statistics will be printed to the 'stats' directory." << endl 
-        << "-> Only one problem's stats can be printed, so you should set 'num' to 1" << endl
-        << "-> Otherwise, only the last problem's stats will be printed" << endl;
-    } else {
-        cout << "Statistics not printed." << endl;
-    }
-    
-    if (vm.count("permutateVars")) {
-        cpd.permutateVars = true;
-        cout << "Variables will be permutated in the outputted CNF" << endl;
-    }
-    
-    if (vm.count("permutateClauses")) {
-        cpd.permutateClauses = true;
-        cout << "Clauses will be permutated in the outputted CNF" << endl;
-    }
-    
+
     uint bits_of_help = 0;
     bool told_which_help = false;
     bool use_deterministic_help = false;
     bool genDeterBits = false;
-    
-    if (vm.count("genDeterBits")) {
-        told_which_help = true;
-        genDeterBits = true;
-        bits_of_help = vm["genDeterBits"].as<int>();
-        cout << "Generating " << bits_of_help << " deterministic bits through greedy randomised algorithm" << endl;
-    }
-    
-    if (vm.count("probBits")) {
-        if (told_which_help) {
-            cout << "You can only have at most one of the following options: genDeterBits, probBits, deterBits" << endl;
-            return -1;
-        }
-        told_which_help = true;
-        use_deterministic_help = false;
-        bits_of_help =  vm["probBits"].as<int>();
-        cout << "Using probabilistic help bit calculation. Help bits given: " << bits_of_help << endl;
-    }
-    
-    if (vm.count("deterBits")) {
-        if (told_which_help) {
-            cout << "You can only have at most one of the following options: genDeterBits, probBits, deterBits" << endl;
-            return -1;
-        }
-        told_which_help = true;
-        use_deterministic_help = true;
-        bits_of_help =  vm["deterBits"].as<int>();
-        cout << "Using deterministic help bit calculation. Help bits given: " << bits_of_help << endl;
-    }
-    
-    if (!told_which_help) {
-        cout << "You did not specify which help bit type we should be using. Therefore, using 0 help bits, which will probably mean an impossibly difficult solving (but does not neccessitate help bits)" << endl;
-    }
-    
-    if (vm.count("xorclauses")) {
-        SolverAttrib::use_xor_clauses = true;
-        cout << "Using XOR clauses in CNF. Beware, this CNF will not work with anything other than CryptoMiniSat." << endl;
-    } else {
-        cout << "Outputting normal CNF, without XOR-clause addition of CryptoMiniSat" << endl;
-        SolverAttrib::use_xor_clauses = false;
-    }
-    
-    if (vm.count("seed")) {
-        cpd.mtrand.seed((long unsigned)vm["seed"].as<int>());
-        cout << "Giving seed " << vm["seed"].as<int>() << endl;
-    } else {
-        cpd.mtrand.seed(0UL);
-        cout << "Not giving explicit seed. Seed is default 0" << endl;
-    }
-
-    if (vm.count("cnfDir")) {
-        cpd.cnfDir = vm["cnfDir"].as<string>();
-        cout << "Putting generated files into " << vm["cnfDir"].as<string>() << endl;
-    } else {
-        cout << "Explicit directory name not given for CNF files. Using default " << cpd.cnfDir << endl;
-    }
-    
-    bool speed_test = true;
-    
-    if (vm.count("debug")) {
-        if (genDeterBits) {
-            cout << "When generating the best deterministic help bit, debug mode cannot be turned on!" << endl;
-            return -1;
-        }
-        cout << "Using debug mode: all problems will be Satisfiable, as the given help bits will all be correct" << endl;
-        speed_test = false;
-    } else {
-        cout << "Giving randomly set help bits: unless the number of given help bits is very low, expect the generated problem(s) to be UNSAT" << endl;
-    }
-
-    if (vm.count("verbose")) {
-        cpd.verbose = 1;
-    }
-    std::cout << "Verbosity set to " << std::boolalpha << cpd.verbose << endl;
-    
     uint howmany = 1;
-    
-    if (vm.count("num")) {
-        howmany =  vm["num"].as<int>();
-    }
-    cout << "Generating " << howmany << " problem instances" << endl;
+    bool speed_test = true;
 
-    if (vm.count("nopropagate")) {
-        cpd.propagateFacts = false;
-        std::cout << "Facts will NOT be propagated at the ANF level. This should lead to slower solving." << std::endl;
+    try {
+        if (vm.count("help")) {
+            cout << desc << "\n";
+            return 1;
+        }
+
+        if (vm.count("outputs")) {
+            cpd.outputs = vm["outputs"].as<int>();
+            cout << "Number of outputs set to " << cpd.outputs << endl;
+        } else {
+            cout << "Number of outputs was not set. You must set it with --outputs NUM. Exiting\n";
+            return 1;
+        }
+
+        if (vm.count("karnaugh")) {
+            cpd.max_karnaugh_table = vm["karnaugh"].as<int>();
+        } else {
+            cpd.max_karnaugh_table = 0;
+        }
+        cout << "Cut-off for karnaugh-table optimisation: " << cpd.max_karnaugh_table << endl;
+
+        if (vm.count("noextmonomials")) {
+            cpd.noExtendedMonomial = true;
+            cout << "Extended monomials not used" << endl;
+        } else {
+            cpd.noExtendedMonomial = false;
+            cout << "Extended monomials used" << endl;
+        }
+
+        if (vm.count("xorcut")) {
+            cpd.xor_cut_len= vm["xorcut"].as<int>();
+        } else {
+            cpd.xor_cut_len= 7;
+        }
+        cout << "xor-cut set at:" << cpd.xor_cut_len << endl;
+
+        if (vm.count("crypto")) {
+            cpd.set_name(vm["crypto"].as<string>());
+            cout << "Loading crypto functions from directory '" << vm["crypto"].as<string>() << "'" << endl;
+        } else {
+            cout << "Option --crypto=NAME must be set!" << endl;
+            return 1;
+        }
+
+        if (vm.count("init")) {
+            if (vm["init"].as<string>() == "yes") {
+                cout << "Initialisation clock set to " << cpd.init_clock  << ", the default given in the crypto function's description" << endl;
+            } else if (vm["init"].as<string>() == "no") {
+                cpd.init_clock = 0;
+                cout << "Initialisation disabled. The full state is the unknown" << endl;
+            } else {
+                cout << "Wrong option at --init=yes/no" << endl;
+                return 1;
+            }
+        }
+
+        if (vm.count("base-shift")) {
+            vector<uint> base_shifts;
+            string line = vm["base-shift"].as<string>();
+            //parse(str.c_str(),(chseq<>(what) >> '=' >> ((uint_p[push_back_a(vec)] >> *(',' >> uint_p[push_back_a(vec)])) | end_p)), space_p);
+            if (!parse(line.c_str(),(((uint_p[push_back_a(base_shifts)] >> *(',' >> uint_p[push_back_a(base_shifts)])) | end_p)), space_p).full) {
+                cout << "Cannot parse 'base-shift' option " << line << "'. It should be comma-delimited" << endl;
+                exit(-1);
+            }
+            if (base_shifts.size() != cpd.sr_num) {
+                cout << "option 'base-shift' must contain exactly as many values (comma-delimited) as there are shift registers" << endl;
+                cout << "You gave " << base_shifts.size() << " values, but there are " << cpd.sr_num << " shift registers" << endl;
+                exit(-1);
+            }
+            try {
+                for (uint i = 0; i < cpd.sr_num; i++) {
+                    cout << "Setting base shift of sr" << i << " to " << base_shifts[i] << endl;
+                    cpd.set_shift(i, base_shifts[i]);
+                }
+            } catch(string s) {
+                cout << "Error:" << s << endl;
+                return 1;
+            }
+        } else {
+            cout << "No base shifting is used -- all of them are 0 base-shifted" << endl;
+        }
+
+        if (vm.count("linearize")) {
+            cpd.linearizeLinearizeable = true;
+            std::cout << "Linearizing linearizeable feedback functions" << endl;
+        } else {
+            cpd.linearizeLinearizeable = false;
+            std::cout << "Not linearizing linearizeable feedback functions" << endl;
+        }
+
+        if (vm.count("stats")) {
+            cpd.print_stats = true;
+            cout << "Statistics will be printed to the 'stats' directory." << endl
+            << "-> Only one problem's stats can be printed, so you should set 'num' to 1" << endl
+            << "-> Otherwise, only the last problem's stats will be printed" << endl;
+        } else {
+            cout << "Statistics not printed." << endl;
+        }
+
+        if (vm.count("permutateVars")) {
+            cpd.permutateVars = true;
+            cout << "Variables will be permutated in the outputted CNF" << endl;
+        }
+
+        if (vm.count("permutateClauses")) {
+            cpd.permutateClauses = true;
+            cout << "Clauses will be permutated in the outputted CNF" << endl;
+        }
+
+        if (vm.count("genDeterBits")) {
+            told_which_help = true;
+            genDeterBits = true;
+            bits_of_help = vm["genDeterBits"].as<int>();
+            cout << "Generating " << bits_of_help << " deterministic bits through greedy randomised algorithm" << endl;
+        }
+
+        if (vm.count("probBits")) {
+            if (told_which_help) {
+                cout << "You can only have at most one of the following options: genDeterBits, probBits, deterBits" << endl;
+                return -1;
+            }
+            told_which_help = true;
+            use_deterministic_help = false;
+            bits_of_help =  vm["probBits"].as<int>();
+            cout << "Using probabilistic help bit calculation. Help bits given: " << bits_of_help << endl;
+        }
+
+        if (vm.count("deterBits")) {
+            if (told_which_help) {
+                cout << "You can only have at most one of the following options: genDeterBits, probBits, deterBits" << endl;
+                return -1;
+            }
+            told_which_help = true;
+            use_deterministic_help = true;
+            bits_of_help =  vm["deterBits"].as<int>();
+            cout << "Using deterministic help bit calculation. Help bits given: " << bits_of_help << endl;
+        }
+
+        if (!told_which_help) {
+            cout << "You did not specify which help bit type we should be using. Therefore, using 0 help bits, which will probably mean an impossibly difficult solving (but does not neccessitate help bits)" << endl;
+        }
+
+        if (vm.count("xorclauses")) {
+            SolverAttrib::use_xor_clauses = true;
+            cout << "Using XOR clauses in CNF. Beware, this CNF will not work with anything other than CryptoMiniSat." << endl;
+        } else {
+            cout << "Outputting normal CNF, without XOR-clause addition of CryptoMiniSat" << endl;
+            SolverAttrib::use_xor_clauses = false;
+        }
+
+        if (vm.count("seed")) {
+            cpd.mtrand.seed((long unsigned)vm["seed"].as<int>());
+            cout << "Giving seed " << vm["seed"].as<int>() << endl;
+        } else {
+            cpd.mtrand.seed(0UL);
+            cout << "Not giving explicit seed. Seed is default 0" << endl;
+        }
+
+        if (vm.count("cnfDir")) {
+            cpd.cnfDir = vm["cnfDir"].as<string>();
+            cout << "Putting generated files into " << vm["cnfDir"].as<string>() << endl;
+        } else {
+            cout << "Explicit directory name not given for CNF files. Using default " << cpd.cnfDir << endl;
+        }
+
+        if (vm.count("debug")) {
+            if (genDeterBits) {
+                cout << "When generating the best deterministic help bit, debug mode cannot be turned on!" << endl;
+                return -1;
+            }
+            cout << "Using debug mode: all problems will be Satisfiable, as the given help bits will all be correct" << endl;
+            speed_test = false;
+        } else {
+            cout << "Giving randomly set help bits: unless the number of given help bits is very low, expect the generated problem(s) to be UNSAT" << endl;
+        }
+
+        if (vm.count("verbose")) {
+            cpd.verbose = 1;
+        }
+        std::cout << "Verbosity set to " << std::boolalpha << cpd.verbose << endl;
+
+        if (vm.count("num")) {
+            howmany =  vm["num"].as<int>();
+        }
+        cout << "Generating " << howmany << " problem instances" << endl;
+
+        if (vm.count("nopropagate")) {
+            cpd.propagateFacts = false;
+            std::cout << "Facts will NOT be propagated at the ANF level. This should lead to slower solving." << std::endl;
+        }
+
+    } catch (string s) {
+        cout << "Error:" << s << endl;
+        return 1;
+    } catch (const char* s) {
+        cout << "Error:" << s << endl;
+        return 1;
     }
-    
     
     //cpd.set_fixed_state_init(556); // select distinct clause from learnts, run_set where run_set.ID = learnts.run_set_id and output = "e282674b82af4e" order by length(clause) limit 20;
 
