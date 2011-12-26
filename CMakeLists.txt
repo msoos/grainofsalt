@@ -35,3 +35,14 @@ add_custom_command(
 )
 
 add_dependencies(copy espresso_exec grainofsalt)
+
+set(CPACK_PACKAGE_NAME "grainofsalt")
+set(CPACK_PACKAGE_VENDOR "www.msoos.org")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A stream cipher tester")
+set(CPACK_PACKAGE_VERSION "1.2.1")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "2")
+set(CPACK_PACKAGE_VERSION_PATCH "1")
+set(CPACK_GENERATOR TGZ)
+include(CPack)
+

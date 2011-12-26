@@ -1,13 +1,13 @@
-To compile, issue:
+To compile, you will need 'cmake'. Once installed, issue:
 
 $ cd build
-$ ../configure
+$ cmake ../
 $ make
 
 Please do NOT try to skip the "cd build". Your build will succeed, but
 it will not be useable.
 
-To use, issue, from directory 'build':
+To use, issue from directory 'build':
 
 $ ./grainofsalt --num 100 --outputs 90 --crypto grain
 
