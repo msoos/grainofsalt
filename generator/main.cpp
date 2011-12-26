@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Mate Soos *
- *   soos@inrialpes.fr   *
+ *   Copyright (C) 2007-2011 by Mate Soos *
+ *   soos.mate@gmail.com   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

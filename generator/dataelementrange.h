@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Mate Soos <mate.soos@inrialpes.fr>, (C) 2009
+// Author: Mate Soos <mate.soos.mate@gmail.com>, (C) 2009
 //
 // Copyright: See COPYING file that comes with this distribution
 //
