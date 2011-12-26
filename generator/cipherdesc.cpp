@@ -44,8 +44,8 @@ CipherDesc::CipherDesc() :
         outputs(0)
         , mixed_shifts(false)
         , noExtendedMonomial(false)
-        , linearizeLinearizeable(false)
         , verbose(false)
+        , linearizeLinearizeable(false)
         , mtrand(0x1234)
         , print_stats (false)
         , permutateClauses(false)
@@ -101,7 +101,7 @@ void CipherDesc::set_name(const string& _ciphername)
     sr_num = 0;
     filter_num = 0;
     init_clock = 0;
-    
+
     sr_size.clear();
     zero_out.clear();
     one_out.clear();
@@ -232,7 +232,7 @@ void CipherDesc::set_name(const string& _ciphername)
         vars.reserve_array(filter_type, i, init_clock + outputs);
     for (uint i = 0; i < no_ciphers; i++)
         vars.reserve_array(output_type, i, cpd.outputs);
-    
+
 
     sr_shift.resize(sr_num, 0);
 }

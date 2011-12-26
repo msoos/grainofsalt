@@ -103,7 +103,7 @@ public:
     void return_mixedMonos(Monomial* mixedMonos);
     MonoStack* get_free_monoStack();
     void return_monoStack(MonoStack* monoStack);
-    
+
     //----------------------------------------
     //satate-fixing functions
     //----------------------------------------
