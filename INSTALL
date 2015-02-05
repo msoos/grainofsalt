@@ -1,4 +1,10 @@
-To compile, you will need 'cmake'. Once installed, issue:
+To compile, you will need:
+* cmake
+* bignum library (with development headers)
+* boost library (with development headers)
+* zlib library (with development headers)
+
+Once these are installed, issue:
 
 $ cd build
 $ cmake ../
