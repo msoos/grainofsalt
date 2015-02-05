@@ -24,15 +24,15 @@
 #include <vector>
 #include <stack>
 #include <string>
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/actor/push_back_actor.hpp>
+#include <boost/spirit/home/classic/core.hpp>
+#include <boost/spirit/home/classic/actor.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/thread/thread.hpp>
 
 #include "MersenneTwister.h"
 #include "variables.h"
 
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 namespace bs = boost::filesystem;
 using std::stack;
 using std::vector;

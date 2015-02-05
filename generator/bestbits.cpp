@@ -20,7 +20,7 @@
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread/thread.hpp>
-#include <boost/spirit/core.hpp>
+#include <boost/spirit/home/classic/core.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/foreach.hpp>
 #include <fstream>

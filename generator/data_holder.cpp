@@ -25,7 +25,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
-#include <boost/spirit/core.hpp>
+#include <boost/spirit/home/classic/core.hpp>
 
 #include "data_holder.h"
 #include "debug.h"
