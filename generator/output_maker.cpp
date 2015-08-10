@@ -114,9 +114,9 @@ void OutputMaker::generate(EquationHolder& eqHolder, const uint time, const Data
         break;
     }
     default: {
-        state = NULL;
+        state = 0;
         function = NULL;
-        var = NULL;
+        var = 0;
         assert(false);
     }
     }

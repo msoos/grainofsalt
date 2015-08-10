@@ -58,7 +58,7 @@ extern "C"
 
 std::ostream& operator << (std::ostream& os, const vector<Lit>& v)
 {
-    for (int i = 0; i < v.size(); i++) {
+    for (uint i = 0; i < v.size(); i++) {
         if (v[i].sign()) os << "-";
             os << v[i].var()+1 << " ";
     }
@@ -230,7 +230,7 @@ uint EquationsToSat::add_karnaugh_table(const LeftHandSide& lhs, const string& d
         leftvar = Lit(lhs.value, false);
 
     if (lhs.what_type == LeftHandSide::is_var || (lhs.what_type == LeftHandSide::is_bool  && !lhs.value))
-        for (uint i = 0; i < no_lines[1]; i++) {
+        for (int i = 0; i < no_lines[1]; i++) {
             assert(output[i][0] == 1);
             vector<Lit> lits;
             if (lhs.what_type == LeftHandSide::is_var) lits.push_back(leftvar);
@@ -243,7 +243,7 @@ uint EquationsToSat::add_karnaugh_table(const LeftHandSide& lhs, const string& d
         }
 
     if (lhs.what_type == LeftHandSide::is_var || (lhs.what_type == LeftHandSide::is_bool && lhs.value))
-        for (uint i = no_lines[1] ; i < no_lines[1]+no_lines[0]; i++) {
+        for (int i = no_lines[1] ; i < no_lines[1]+no_lines[0]; i++) {
             assert(output[i][0] == 0);
             vector<Lit> lits;
             if (lhs.what_type == LeftHandSide::is_var) lits.push_back(~leftvar);
@@ -308,7 +308,7 @@ uint EquationsToSat::convert()
 void EquationsToSat::print_karnaugh_table() const
 {
     for (int i = 0; i < no_lines[0] + no_lines[1]; i++) {
-        for (int i2 = 0; i2 < karnaugh_table_vars.size(); i2++) {
+        for (uint i2 = 0; i2 < karnaugh_table_vars.size(); i2++) {
             cout << input[i][i2] << endl;
         }
         cout << " " << output[i][0]  << endl;

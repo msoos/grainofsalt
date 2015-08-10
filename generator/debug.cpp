@@ -65,7 +65,7 @@ const string Debug::hexify(const vector<bool>& vec)
     
     string ret;
     const uint vecsize = vec2.size();
-    for (int i = 0; i < vecsize;) {
+    for (uint i = 0; i < vecsize;) {
         uint tmp = 0;
         for (int i2 = 0; i2 < 4; i2++)
             tmp |= ((uint)vec2[i+i2]) << (3-i2);
@@ -127,7 +127,7 @@ const vector<bool> Debug::hexToBool(const string& str)
     vector<bool> ret;
     static const char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     
-    for (int i = 0; i < str2.length(); i++) {
+    for (uint i = 0; i < str2.length(); i++) {
         const char c = str2[i];
         const char* at = std::find(hex, hex+16, c);
         if (at >= hex+16)

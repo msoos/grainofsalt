@@ -511,7 +511,7 @@ sm_matrix *A;
     putc('\n', fp);
 
     for(prow = A->first_row; prow != 0; prow = prow->next_row) {
-	(void) fprintf(fp, "%3d:", prow->row_num, prow->length);
+	(void) fprintf(fp, "%3d:", prow->row_num);
 
 	for(pcol = A->first_col; pcol != 0; pcol = pcol->next_col) {
 	    c = sm_row_find(prow, pcol->col_num) ? '1' : '.';
