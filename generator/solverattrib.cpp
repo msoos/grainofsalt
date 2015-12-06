@@ -30,7 +30,7 @@ void SolverAttrib::setupPermutateVars()
 
 void SolverAttrib::permutateVars()
 {
-    for (int i = 0; i < variableMix.size(); i++) {
+    for (uint i = 0; i < variableMix.size(); i++) {
         int j = cpd.mtrand.randInt(i);
         uint tmp = variableMix[i];
         variableMix[i] = variableMix[j];
@@ -54,14 +54,14 @@ void SolverAttrib::permutateVars()
 
 void SolverAttrib::permutateClauses()
 {
-    for (int i = 0; i < clauses.size(); i++) {
+    for (uint i = 0; i < clauses.size(); i++) {
         int j = cpd.mtrand.randInt(i);
         Clause tmp = clauses[i];
         clauses[i] = clauses[j];
         clauses[j] = tmp;
     }
     
-    for (int i = 0; i < xorClauses.size(); i++) {
+    for (uint i = 0; i < xorClauses.size(); i++) {
         int j = cpd.mtrand.randInt(i);
         XorClause tmp = xorClauses[i];
         xorClauses[i] = xorClauses[j];

@@ -98,8 +98,8 @@ void FuncDataHolder::read_file_multiline(const char* filename, FunctionData& pro
         string::iterator it = lineread.begin();
         while ( it != lineread.end()) {
             element_type type;
-            uint which_of_type;
-            uint var;
+            uint which_of_type = 0;
+            uint var = 0;
 
             parse_info<string::iterator> info;
 
