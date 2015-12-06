@@ -72,7 +72,7 @@ void GrainOfSalt::speed_test(const uint test_number)
         SolverAttrib solverAttrib;
         EquationHolder eqHolder;
 
-        bool printed_file = random_test(solverAttrib, eqHolder, cpd.mtrand);
+	random_test(solverAttrib, eqHolder, cpd.mtrand);
         
         cpd.vars.clear_internal_vars();
     }
@@ -138,6 +138,7 @@ double GrainOfSalt::debug(const uint num)
         
         cpd.vars.clear_internal_vars();
     }
+    return cumulated_solver_time;
 }
 
 void GrainOfSalt::best_bit_test(const uint test_number)
@@ -240,7 +241,7 @@ bool GrainOfSalt::one_test(SolverAttrib& solverAttrib, EquationHolder& eqHolder,
     if (cpd.verbose)
         cout << "Done (time: " << cpuTime() - eq_making_time << "s)" << endl;
 
-    double cpu_time = cpuTime();
+    //double cpu_time = cpuTime();
     lbool ret = l_Undef;
     if (cpd.propagateFacts) ret &= eqHolder.eliminate_trivial_and_mono_equations();
     if (ret != l_Undef && cpd.verbose) {
@@ -301,7 +302,7 @@ vector<vector<bool> > GrainOfSalt::generate_random_state(const uint state_init) 
 
 void GrainOfSalt::check_found_state2(const vector<lbool>& output, const SolverAttrib& solverAttrib, const EquationHolder& eqHolder, const vector<bool>& hex_state, const uint sr) const
 {
-    lbool good = l_True;
+    //lbool good = l_True;
     for (uint i = cpd.sr_shift[sr]; i < cpd.sr_size[sr] + cpd.sr_shift[sr]; i++) {
         uint var = cpd.vars.get_array_var(sr_type, sr, i);
         if (eqHolder.get_same_vars().find(var) != eqHolder.get_same_vars().end())
@@ -327,7 +328,7 @@ void GrainOfSalt::check_found_state2(const vector<lbool>& output, const SolverAt
 
 void GrainOfSalt::check_found_state(ofstream& file, const SolverAttrib& solverAttrib, const EquationHolder& eqHolder, const vector<bool>& hex_state, const uint sr) const
 {
-    lbool good = l_True;
+    //lbool good = l_True;
     for (uint i = cpd.sr_shift[sr]; i < cpd.sr_size[sr] + cpd.sr_shift[sr]; i++) {
         uint var = cpd.vars.get_array_var(sr_type, sr, i);
         if (eqHolder.get_same_vars().find(var) != eqHolder.get_same_vars().end())
