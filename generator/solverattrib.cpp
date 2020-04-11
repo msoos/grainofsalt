@@ -111,6 +111,8 @@ void SolverAttrib::print_satfile(const string name, const map<uint, uint>& same_
     add_mono_varnames(satfile);
     add_cut_xor_varnames(satfile);
     satfile.close();
+
+    std::cout << "File output: " << name << std::endl;
 }
 
 uint SolverAttrib::get_mixed_var(const uint var) const
